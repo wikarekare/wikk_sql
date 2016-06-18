@@ -19,10 +19,10 @@ Wrappers around mysql gem
   
 ###Class level calls mirror the instance level calls taking blocks
 ```
-   WIKK_SQL::connect(config,...) { |sql| rest of block }  
-   WIKK_SQL::each_row(config,...) { |row| rest of block }  
-   WIKK_SQL::each_hash(config,...) { |hash| rest of block }  
-   WIKK_SQL::each_sym(config,...) { |sym:, sym:, ..., **hash| rest of block }
+   WIKK_SQL::connect(config) { |sql| rest of block }  
+   WIKK_SQL::each_row(config,the_query) { |row| rest of block }  
+   WIKK_SQL::each_hash(config,the_query, with_table_names=false) { |hash| rest of block }  
+   WIKK_SQL::each_sym(config,the_query) { |sym:, sym:, ..., **hash| rest of block }
 ```
    
 ###Config is hash of the form
