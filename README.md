@@ -4,7 +4,8 @@ Wrappers around mysql gem
 
 ## DESCRIPTION:
 
-Instance level
+###Instance level
+```
   connect(config)  { |sql| rest of block } #Aliased to open
   close #Call if connect didn't get passed a block
   query(the_query)
@@ -14,20 +15,25 @@ Instance level
   transaction { calls to query, each_row, each_hash or each_sym }
   fetch_fields #Returns table field info
   affected_rows #Returns the number of rows changed, inserted or deleted.
+```
   
-Class level calls mirror the instance level calls taking blocks
+###Class level calls mirror the instance level calls taking blocks
+```
    WIKK_SQL::connect(config,...) { |sql| rest of block }  
    WIKK_SQL::each_row(config,...) { |row| rest of block }  
    WIKK_SQL::each_hash(config,...) { |hash| rest of block }  
    WIKK_SQL::each_sym(config,...) { |sym:, sym:, ..., **hash| rest of block }
+```
    
-config is hash of the form
+###Config is hash of the form
+```
     config = {
         "host" => "hostname or IP",
         "db" => "database name",
         "dbuser" => "user to login as",
         "key" => "password"
     }
+```
   
 ## FEATURES/PROBLEMS:
 
@@ -35,6 +41,7 @@ config is hash of the form
 ## SYNOPSIS:
 
 ###Instance example
+```
   WIKK_SQL::connect(@config) do |sql|
     sql.each_hash("select * from customer limit 2", with_table_names = true) do |row|
       row.each do |k,v|
@@ -43,11 +50,14 @@ config is hash of the form
     end
     puts "Number of rows returned: #{sql.affected_rows}"
   end
+```
   
 ###Class level example
+```
   WIKK_SQL::each_sym(@config, "select * from customer limit 2") do |customer_id:, name:, site_name:, **row|
     printf "customer_id %s  site_name %s name %s\n", customer_id, site_name, name
   end
+```
   
 
 ## REQUIREMENTS:
