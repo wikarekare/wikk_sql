@@ -24,10 +24,10 @@ Consolidation of bits of code from many of my projects, going back 10+ years, in
   
 ###Class level calls mirror the instance level calls taking blocks
 ```
-   WIKK_SQL::connect(config) { |sql| rest of block }  
-   WIKK_SQL::each_row(config,the_query) { |row| rest of block }  
-   WIKK_SQL::each_hash(config,the_query, with_table_names=false) { |hash| rest of block }  
-   WIKK_SQL::each_sym(config,the_query) { |sym:, sym:, ..., **hash| rest of block }
+   WIKK::SQL::connect(config) { |sql| rest of block }  
+   WIKK::SQL::each_row(config,the_query) { |row| rest of block }  
+   WIKK::SQL::each_hash(config,the_query, with_table_names=false) { |hash| rest of block }  
+   WIKK::SQL::each_sym(config,the_query) { |sym:, sym:, ..., **hash| rest of block }
 ```
    
 ###Config
@@ -48,7 +48,7 @@ Or Hash
 
 ###Instance example
 ```
-  WIKK_SQL::connect(@config) do |sql|
+  WIKK::SQL::connect(@config) do |sql|
     sql.each_hash("select * from customer limit 2", with_table_names = true) do |row|
       row.each do |k,v|
         printf "  %s => %s\n", k, v
@@ -60,7 +60,7 @@ Or Hash
   
 ###Class level example
 ```
-  WIKK_SQL::each_sym(@config, "select * from customer limit 2") do |customer_id:, name:, site_name:, **row|
+  WIKK::SQL::each_sym(@config, "select * from customer limit 2") do |customer_id:, name:, site_name:, **row|
     printf "customer_id %s  site_name %s name %s\n", customer_id, site_name, name
   end
 ```
@@ -80,7 +80,9 @@ Can use wikk_configuration gem to load config from a json file.
 
 (The MIT License)
 
-Copyright (c) 2016 FIX
+Encapsulates Wikarekare code used in library form, from 2004 to present day, as a gem.
+
+Copyright (c) 2004-2016
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
