@@ -9,14 +9,14 @@ require 'wikk_configuration'
 
 def test_class_lvl_each_row
   puts "test_class_lvl_each_row: select name, site_name from customer limit 2"
-  WIKK_SQL::each_row(@config, "select name, site_name  from customer limit 2") do |row|
+  WIKK::SQL::each_row(@config, "select name, site_name  from customer limit 2") do |row|
     printf "%s, %s\n", row[0], row[1]
   end
 end
 
 def test_class_lvl_each_hash
   puts "test_class_lvl_each_hash: select * from customer limit 2"
-  WIKK_SQL::each_hash(@config, "select * from customer limit 2") do |row|
+  WIKK::SQL::each_hash(@config, "select * from customer limit 2") do |row|
     row.each do |k,v|
       printf "  %s => %s\n", k, v
     end
@@ -25,14 +25,14 @@ end
 
 def test_class_lvl_each_sym
   puts "test_class_lvl_each_sym select * from customer limit 2"
-  WIKK_SQL::each_sym(@config, "select * from customer limit 2") do |customer_id:, name:, site_name:, **row|
+  WIKK::SQL::each_sym(@config, "select * from customer limit 2") do |customer_id:, name:, site_name:, **row|
     printf "customer_id %s  site_name %s name %s\n", customer_id, site_name, name
   end
 end
 
 def test_class_lvl_each_hash_with_table_names
   puts "test_class_lvl_each_hash_with_table_names: select * from customer limit 2"
-  WIKK_SQL::each_hash(@config, "select * from customer limit 2", with_table_names = true) do |row|
+  WIKK::SQL::each_hash(@config, "select * from customer limit 2", with_table_names = true) do |row|
     puts "Row"
     row.each do |k,v|
       printf "  %s => %s\n", k, v
@@ -44,8 +44,9 @@ end
   
 def test_instance_lvl_get_fields
   puts "test_instance_lvl_get_fields: select * from customer limit 1"
-  WIKK_SQL::connect(@config) do |sql|
+  WIKK::SQL::connect(@config) do |sql|
     sql.query("select * from customer limit 1") do |result|
+     # puts result.fetch_fields[0].class
       result.fetch_fields.each_with_index do |info, i|
              printf "--- Column %d (%s) ---\n", i, info.name
              printf "table:            %s\n", info.table
@@ -62,7 +63,7 @@ end
 
 def test_instance_lvl_each_row
   puts "test_instance_lvl_each_row: select name, site_name from customer limit 2"
-  WIKK_SQL::connect(@config) do |sql|
+  WIKK::SQL::connect(@config) do |sql|
     sql.each_row("select name, site_name from customer limit 2") do |row|
       printf "%s, %s\n", row[0], row[1]
     end
@@ -72,7 +73,7 @@ end
 
 def test_instance_lvl_each_hash
   puts "test_instance_lvl_each_hash: select * from customer limit 2"
-  WIKK_SQL::connect(@config) do |sql|
+  WIKK::SQL::connect(@config) do |sql|
     sql.each_hash("select * from customer limit 2") do |row|
       puts "Row"
       row.each do |k,v|
@@ -87,7 +88,7 @@ end
 #
 def test_transaction
   puts "test_transaction: select site_name, state, INET_NTOA(network + ..."
-  WIKK_SQL::connect(@config) do |sql|
+  WIKK::SQL::connect(@config) do |sql|
     sql.transaction do
       sql.each_row("select customer_id, site_name from customer limit 1") do |row|
         printf "%s, %s\n", row[0], row[1]
