@@ -1,8 +1,13 @@
 # wikk_sql
 
-Wrappers around mysql gem
+* http://rbur004.github.com/wikk_sql/
+* Source https://github.com/wikarekare/wikk_sql
+* Gem https://rubygems.org/gems/wikk_sql
 
 ## DESCRIPTION:
+
+Wrappers around mysql gem.
+Consolidation of bits of code from many of my projects, going back 10+ years, into a gem.
 
 ###Instance level
 ```
@@ -25,14 +30,15 @@ Wrappers around mysql gem
    WIKK_SQL::each_sym(config,the_query) { |sym:, sym:, ..., **hash| rest of block }
 ```
    
-###Config is hash of the form
+###Config
 ```
-    config = {
-        "host" => "hostname or IP",
-        "db" => "database name",
-        "dbuser" => "user to login as",
-        "key" => "password"
-    }
+Any class, such as the WIKK::Configuration class, with attr_readers
+    host    #String hostname or IP Address
+    db      #String database name
+    dbuser  #String user to connect to DB as.
+    key     #"password" for db user account.
+Or Hash
+    {"host" => "hostname", "db" => "database", "dbuser" => "username", "key" => "password"}
 ```
   
 ## FEATURES/PROBLEMS:
