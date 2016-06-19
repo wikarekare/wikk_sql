@@ -5,7 +5,7 @@ require_relative '../lib/wikk_sql.rb' #Local test
 #require "wikk_sql" #test installed gem
 require 'wikk_configuration'
 
-@config = Configuration.new('../../../etc/ntm_conf.json')
+@config = WIKK::Configuration.new('../../../etc/ntm_conf.json')
 
 def test_class_lvl_each_row
   puts "test_class_lvl_each_row: select name, site_name from customer limit 2"
