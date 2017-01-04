@@ -8,7 +8,7 @@ module WIKK
   # @attr_reader [Mysql::Result] result the last query's result
   # @attr_reader [Mysql] my the DB connection descriptor
   class SQL
-    VERSION = '0.1.1'
+    VERSION = '0.1.2'
 
     attr_reader :affected_rows, :result, :my
     
@@ -69,8 +69,8 @@ module WIKK
           @result = nil
         end
         @affected_rows = 0 #incase this query crashes and burns, this will have a value.
-        @affected_rows = @my.affected_rows #This is non-zero for insert/delete/update of rows
         @result = @my.query(the_query)
+        @affected_rows = @my.affected_rows #This is non-zero for insert/delete/update of rows
         if block_given?
           yield @result
         else
