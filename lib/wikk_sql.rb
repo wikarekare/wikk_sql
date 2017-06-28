@@ -8,7 +8,7 @@ module WIKK
   # @attr_reader [Mysql::Result] result the last query's result
   # @attr_reader [Mysql] my the DB connection descriptor
   class SQL
-    VERSION = '0.1.2'
+    VERSION = '0.1.3'
 
     attr_reader :affected_rows, :result, :my
     
@@ -39,7 +39,12 @@ module WIKK
         db_config = Struct.new(*(k = sym.keys)).new(*sym.values_at(*k))
       end
     
-      @my = Mysql::new(db_config.host, db_config.dbuser, db_config.key, db_config.db ) 
+      begin
+        @my = Mysql::new(db_config.host, db_config.dbuser, db_config.key, db_config.db ) 
+      rescue Exception => e
+        @my = nil
+        raise e
+      end
       #@@my.reconnect = true
       if block_given?
         yield
@@ -64,7 +69,7 @@ module WIKK
     # @return [Mysql::Result] @result and @affected_rows are also set.
     def query(the_query)
       begin
-        if result != nil 
+        if @result != nil 
           @result.free #Free any result we had left over from previous use.
           @result = nil
         end
@@ -77,7 +82,7 @@ module WIKK
           return @result
         end
       rescue Mysql::Error => e
-        if result != nil 
+        if @result != nil 
           @result.free #Free any result we had left over from previous use.
           @result = nil
         end
@@ -90,7 +95,7 @@ module WIKK
     # @yieldparam [] yields to block, where the queries are performed.
     # @raise [Mysql] passes on Mysql errors, freeing the result.
     def transaction
-      puts "transaction"
+      #puts "transaction"
       if block_given?
         begin
           @my.query("START TRANSACTION WITH CONSISTENT SNAPSHOT")
