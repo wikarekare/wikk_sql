@@ -8,7 +8,7 @@ module WIKK
   # @attr_reader [Mysql::Result] result the last query's result
   # @attr_reader [Mysql] my the DB connection descriptor
   class SQL
-    VERSION = '0.1.3'
+    VERSION = '0.1.4'
 
     attr_reader :affected_rows, :result, :my
     
@@ -45,6 +45,7 @@ module WIKK
         @my = nil
         raise e
       end
+      raise Mysql::Error, 'Not Connected' if @my == nil
       #@@my.reconnect = true
       if block_given?
         yield
@@ -68,6 +69,7 @@ module WIKK
     # @yieldparam [Mysql::Result] @result and @affected_rows are also set.
     # @return [Mysql::Result] @result and @affected_rows are also set.
     def query(the_query)
+      raise Mysql::Error, 'Not Connected' if @my == nil
       begin
         if @result != nil 
           @result.free #Free any result we had left over from previous use.
@@ -95,7 +97,7 @@ module WIKK
     # @yieldparam [] yields to block, where the queries are performed.
     # @raise [Mysql] passes on Mysql errors, freeing the result.
     def transaction
-      #puts "transaction"
+      raise Mysql::Error, 'Not Connected' if @my == nil
       if block_given?
         begin
           @my.query("START TRANSACTION WITH CONSISTENT SNAPSHOT")
