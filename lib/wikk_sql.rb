@@ -28,7 +28,8 @@ module WIKK
       end
     end
   
-    #Set up the mySQL connection.
+    # Set up the mySQL connection.
+    #
     # @param db_config [Configuration]  Configuration class, Hash, or any class with appropriate attr_readers.
     # @yieldparam [] if a block is given.
     # @return [NilClass] if block is given, and closes the mySQL connection. 
@@ -56,14 +57,16 @@ module WIKK
   
     alias open connect
   
-    #close the mySQL connection. Call only if connect was not given a block.
+    # close the mySQL connection. Call only if connect was not given a block.
+    #
     # @return [NilClass]
     def close
       @my.close if @my != nil
       return (@my = nil)
     end
   
-    #Run a query on the DB server.
+    # Run a query on the DB server.
+    #
     # @param the_query [String]  Sql query to send to DB server.
     # @raise [Mysql] passes on Mysql errors, freeing the result.
     # @yieldparam [Mysql::Result] @result and @affected_rows are also set.
@@ -92,8 +95,9 @@ module WIKK
       end
     end
 
-    #Perform a transaction in the passed block.
-    #RollBACK on error, otherwise COMMIT
+    # Perform a transaction in the passed block.
+    # RollBACK on error, otherwise COMMIT
+    #
     # @yieldparam [] yields to block, where the queries are performed.
     # @raise [Mysql] passes on Mysql errors, freeing the result.
     def transaction
@@ -110,7 +114,8 @@ module WIKK
       end
     end
     
-    #Yields query query results row by row, as Array
+    # Yields query query results row by row, as Array
+    #
     # @param the_query [String]  Sql query to send to DB server.
     # @raise [Mysql] passes on Mysql errors, freeing the result.
     # @yieldparam [Array] each result row
@@ -134,7 +139,8 @@ module WIKK
       end
     end 
   
-    #Yields query result row by row, as Hash, using String keys
+    # Yields query result row by row, as Hash, using String keys
+    #
     # @param the_query [String]  Sql query to send to DB server.
     # @param with_table_names [Boolean] if TrueClass, then table names are included in the hash keys.
     # @raise [Mysql] passes on Mysql errors, freeing the result.
@@ -159,8 +165,9 @@ module WIKK
       end
     end 
   
-    #Yields query result row by row, as Hash using Symbol keys, so can't have table names included.
-    #This can be used with keyword arguments. eg. each_sym { |key1:, key2:, ..., **rest_of_args| do something }
+    # Yields query result row by row, as Hash using Symbol keys, so can't have table names included.
+    # This can be used with keyword arguments. eg. each_sym { |key1:, key2:, ..., **rest_of_args| do something }
+    #
     # @param the_query [String]  Sql query to send to DB server.
     # @raise [Mysql] passes on Mysql errors, freeing the result.
     # @yieldparam [Hash] each result row
@@ -171,14 +178,16 @@ module WIKK
       end
     end
 
-    #Get the database field attributes from a query result.
+    # Get the database field attributes from a query result.
+    #
     # @yieldparam [Array][Mysql::Field] Array of field records
     # @note fields are name (of field), table (name), def, type, length, max_length, flags,decimals
     def fetch_fields
       @result.fetch_fields
     end
 
-    #Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.
+    # Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.
+    #
     # @param db_config [Configuration]  Configuration class, Hash, or any class with appropriate attr_readers.
     # @param the_query [String]  Sql query to send to DB server.
     # @raise [Mysql] passes on Mysql errors, freeing the result.
@@ -198,8 +207,9 @@ module WIKK
       return result
     end
 
-    #Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.
-    #Yields query query results row by row, as Array
+    # Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.
+    # Yields query query results row by row, as Array
+    #
     # @param db_config [Configuration]  Configuration class, Hash, or any class with appropriate attr_readers.
     # @param the_query [String]  Sql query to send to DB server.
     # @raise [Mysql] passes on Mysql errors, freeing the result.
@@ -218,8 +228,9 @@ module WIKK
       return sql
     end
   
-    #Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.
-    #Yields query result row by row, as Hash, using String keys
+    # Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.
+    # Yields query result row by row, as Hash, using String keys
+    #
     # @param db_config [Configuration]  Configuration class, Hash, or any class with appropriate attr_readers.
     # @param the_query [String]  Sql query to send to DB server.
     # @param with_table_names [Boolean] if TrueClass, then table names are included in the hash keys.
@@ -241,8 +252,9 @@ module WIKK
       return sql
     end
 
-    #Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.
-    #Yields query result row by row, as Hash using Symbol keys, so can't have table names included.
+    # Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.
+    # Yields query result row by row, as Hash using Symbol keys, so can't have table names included.
+    #
     # @param db_config [Configuration]  Configuration class, Hash, or any class with appropriate attr_readers.
     #This can be used with keyword arguments. eg. each_sym { |key1:, key2:, ..., **rest_of_args| do something }
     # @param the_query [String]  Sql query to send to DB server.
