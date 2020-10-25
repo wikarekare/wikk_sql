@@ -1,5 +1,4 @@
 # -*- ruby -*-
-
 require 'rubygems'
 require 'hoe'
 Hoe.plugin :yard
@@ -11,6 +10,8 @@ Hoe.spec 'wikk_sql' do
   
   self.yard_title = 'wikk_sql'
   self.yard_options = ['--markup', 'markdown', '--protected']
+
+  self.dependency "ruby-mysql", ['~> 1.0', '>= 1.0.0']
 end
 
 
