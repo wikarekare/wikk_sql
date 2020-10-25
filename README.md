@@ -1,8 +1,8 @@
 # wikk_sql
 
-* http://rbur004.github.com/wikk_sql/
-* Source https://github.com/wikarekare/wikk_sql
-* Gem https://rubygems.org/gems/wikk_sql
+* Docs :: https://wikarekare.github.com/wikk_sql/
+* Source :: https://github.com/wikarekare/wikk_sql
+* Gem :: https://rubygems.org/gems/wikk_sql
 
 ## DESCRIPTION:
 
