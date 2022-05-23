@@ -3,7 +3,7 @@ module WIKK
   require 'pp'
   require 'json'
 
-  #WIKK_SQL wrapper for ruby mysql gem.
+  # WIKK_SQL wrapper for ruby mysql gem.
   # @attr_reader [Numeric] affected_rows the number of rows changed, deleted, or added.
   # @attr_reader [Mysql::Result] result the last query's result
   # @attr_reader [Mysql] my the DB connection descriptor
@@ -11,12 +11,12 @@ module WIKK
     VERSION = '0.1.4'
 
     attr_reader :affected_rows, :result, :my
-    
-    #Create WIKK::SQL instance and set up the mySQL connection.
+
+    # Create WIKK::SQL instance and set up the mySQL connection.
     # @param db_config [Configuration]  Configuration class, Hash, or any class with appropriate attr_readers.
     # @yieldparam sql [WIKK_SQL] if a block is given.
-    # @return [NilClass] if block is given, and closes the mySQL connection. 
-    # @return [WIKK_SQL] if no block is given, and caller must call sql.close 
+    # @return [NilClass] if block is given, and closes the mySQL connection.
+    # @return [WIKK_SQL] if no block is given, and caller must call sql.close
     def self.connect(db_config)
       sql = self.new
       sql.connect(db_config)
@@ -27,36 +27,37 @@ module WIKK
         return sql
       end
     end
-  
+
     # Set up the mySQL connection.
     #
     # @param db_config [Configuration]  Configuration class, Hash, or any class with appropriate attr_readers.
     # @yieldparam [] if a block is given.
-    # @return [NilClass] if block is given, and closes the mySQL connection. 
-    # @return [WIKK_SQL] if no block is given, and caller must call sql.close 
+    # @return [NilClass] if block is given, and closes the mySQL connection.
+    # @return [WIKK_SQL] if no block is given, and caller must call sql.close
     def connect(db_config)
-      if db_config.class == Hash
-        sym = db_config.each_with_object({}) { |(k,v),h| h[k.to_sym] = v }
+      if db_config.instance_of?(Hash)
+        sym = db_config.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
         db_config = Struct.new(*(k = sym.keys)).new(*sym.values_at(*k))
       end
-    
+
       begin
-        @my = Mysql::new(db_config.host, db_config.dbuser, db_config.key, db_config.db ) 
+        @my = Mysql.new(db_config.host, db_config.dbuser, db_config.key, db_config.db )
       rescue Exception => e
         @my = nil
         raise e
       end
-      raise Mysql::Error, 'Not Connected' if @my == nil
-      #@@my.reconnect = true
+      raise Mysql::Error, 'Not Connected' if @my.nil?
+
+      # @@my.reconnect = true
       if block_given?
         yield
         return close
       end
       return @my
     end
-  
+
     alias open connect
-  
+
     # close the mySQL connection. Call only if connect was not given a block.
     #
     # @return [NilClass]
@@ -64,7 +65,7 @@ module WIKK
       @my.close if @my != nil
       return (@my = nil)
     end
-  
+
     # Run a query on the DB server.
     #
     # @param the_query [String]  Sql query to send to DB server.
@@ -72,23 +73,24 @@ module WIKK
     # @yieldparam [Mysql::Result] @result and @affected_rows are also set.
     # @return [Mysql::Result] @result and @affected_rows are also set.
     def query(the_query)
-      raise Mysql::Error, 'Not Connected' if @my == nil
+      raise Mysql::Error, 'Not Connected' if @my.nil?
+
       begin
-        if @result != nil 
-          @result.free #Free any result we had left over from previous use.
+        if @result != nil
+          @result.free # Free any result we had left over from previous use.
           @result = nil
         end
-        @affected_rows = 0 #incase this query crashes and burns, this will have a value.
+        @affected_rows = 0 # incase this query crashes and burns, this will have a value.
         @result = @my.query(the_query)
-        @affected_rows = @my.affected_rows #This is non-zero for insert/delete/update of rows
+        @affected_rows = @my.affected_rows # This is non-zero for insert/delete/update of rows
         if block_given?
           yield @result
         else
           return @result
         end
       rescue Mysql::Error => e
-        if @result != nil 
-          @result.free #Free any result we had left over from previous use.
+        if @result != nil
+          @result.free # Free any result we had left over from previous use.
           @result = nil
         end
         raise e
@@ -101,44 +103,43 @@ module WIKK
     # @yieldparam [] yields to block, where the queries are performed.
     # @raise [Mysql] passes on Mysql errors, freeing the result.
     def transaction
-      raise Mysql::Error, 'Not Connected' if @my == nil
+      raise Mysql::Error, 'Not Connected' if @my.nil?
+
       if block_given?
         begin
-          @my.query("START TRANSACTION WITH CONSISTENT SNAPSHOT")
-          yield #Start executing the query black.
-          @my.query("COMMIT")
+          @my.query('START TRANSACTION WITH CONSISTENT SNAPSHOT')
+          yield # Start executing the query black.
+          @my.query('COMMIT')
         rescue Mysql::Error => e
-          @my.query("ROLLBACK")
+          @my.query('ROLLBACK')
           raise e
         end
       end
     end
-    
+
     # Yields query query results row by row, as Array
     #
     # @param the_query [String]  Sql query to send to DB server.
     # @raise [Mysql] passes on Mysql errors, freeing the result.
     # @yieldparam [Array] each result row
     # @note @result and @affected_rows are also set via call to query().
-    def each_row(the_query)
+    def each_row(the_query, &block)
       begin
         query(the_query)
         if @result != nil && block_given?
-          @affected_rows = @result.num_rows() #This is non-zero is we do a select, and get results.
-          @result.each do |row|
-            yield row #return one row at a time to the block
-          end
+          @affected_rows = @result.num_rows # This is non-zero is we do a select, and get results.
+          @result.each(&block)
         end
       rescue Mysql::Error => e
-        #puts "#{e.errno}: #{e.error}"
+        # puts "#{e.errno}: #{e.error}"
         raise e
       ensure
         if block_given? && @result != nil
           @result.free
         end
       end
-    end 
-  
+    end
+
     # Yields query result row by row, as Hash, using String keys
     #
     # @param the_query [String]  Sql query to send to DB server.
@@ -146,25 +147,23 @@ module WIKK
     # @raise [Mysql] passes on Mysql errors, freeing the result.
     # @yieldparam [Hash] each result row
     # @note @result and @affected_rows are also set via call to query().
-    def each_hash(the_query, with_table_names=false)
+    def each_hash(the_query, with_table_names = false, &block)
       begin
         query(the_query)
         if @result != nil && block_given?
-          @affected_rows = @result.num_rows() #This is non-zero is we do a select, and get results.
-          @result.each_hash(with_table_names) do |row|
-            yield row
-          end
+          @affected_rows = @result.num_rows # This is non-zero is we do a select, and get results.
+          @result.each_hash(with_table_names, &block)
         end
       rescue Mysql::Error => e
-        #puts "#{e.errno}: #{e.error}"
+        # puts "#{e.errno}: #{e.error}"
         raise e
       ensure
         if block_given? && @result != nil
           @result.free
         end
       end
-    end 
-  
+    end
+
     # Yields query result row by row, as Hash using Symbol keys, so can't have table names included.
     # This can be used with keyword arguments. eg. each_sym { |key1:, key2:, ..., **rest_of_args| do something }
     #
@@ -174,7 +173,7 @@ module WIKK
     # @note @result and @affected_rows are also set via call to query().
     def each_sym(the_query)
       each_hash(the_query) do |row_hash|
-        yield row_hash.each_with_object({}) { |(k,v),h| h[k.to_sym] = v }
+        yield row_hash.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
       end
     end
 
@@ -215,19 +214,19 @@ module WIKK
     # @raise [Mysql] passes on Mysql errors, freeing the result.
     # @yieldparam [Array] each result row
     # @note @result and @affected_rows are also set via call to query().
-    def self.each_row(db_config, query)
+    def self.each_row(db_config, query, &block)
       sql = self.new
       sql.open db_config
       begin
         if block_given?
-          sql.each_row(query) { |y| yield y }
+          sql.each_row(query, &block)
         end
       ensure
         sql.close
       end
       return sql
     end
-  
+
     # Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.
     # Yields query result row by row, as Hash, using String keys
     #
@@ -237,14 +236,12 @@ module WIKK
     # @raise [Mysql] passes on Mysql errors, freeing the result.
     # @yieldparam [Hash] each result row
     # @note @result and @affected_rows are also set via call to query().
-    def self.each_hash(db_config, query, with_table_names=false)
+    def self.each_hash(db_config, query, with_table_names = false, &block)
       sql = self.new
       sql.open db_config
       begin
         if block_given?
-          sql.each_hash(query, with_table_names) do |res|
-            yield res
-          end
+          sql.each_hash(query, with_table_names, &block)
         end
       ensure
         sql.close
@@ -256,7 +253,7 @@ module WIKK
     # Yields query result row by row, as Hash using Symbol keys, so can't have table names included.
     #
     # @param db_config [Configuration]  Configuration class, Hash, or any class with appropriate attr_readers.
-    #This can be used with keyword arguments. eg. each_sym { |key1:, key2:, ..., **rest_of_args| do something }
+    # This can be used with keyword arguments. eg. each_sym { |key1:, key2:, ..., **rest_of_args| do something }
     # @param the_query [String]  Sql query to send to DB server.
     # @raise [Mysql] passes on Mysql errors, freeing the result.
     # @yieldparam [Hash] each result row
@@ -267,7 +264,7 @@ module WIKK
       begin
         if block_given?
           sql.each_sym(query) do |**res|
-            yield **res
+            yield(**res)
           end
         end
       ensure
@@ -277,5 +274,3 @@ module WIKK
     end
   end
 end
-
-
