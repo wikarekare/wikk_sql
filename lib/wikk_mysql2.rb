@@ -136,7 +136,7 @@ module WIKK
       begin
         query(the_query, { as: :array, cache_rows: false })
         if @result != nil && block_given?
-          @affected_rows = @result.num_rows # This is non-zero is we do a select, and get results.
+          # @affected_rows = @result. # This is non-zero is we do a select, and get results.
           @result.each(&block)
         end
       rescue Mysql2::Error => e
@@ -163,19 +163,21 @@ module WIKK
           query(the_query, { as: :array, cache_rows: false })
           if @result != nil && block_given?
             fields = @result.fields
-            tables = @result.respond_to(:tables) ? @result.tables : [] # My addition to mysql2 results.c
+            tables = @result.respond_to?(:tables) ? @result.tables : [] # My addition to mysql2 results.c
 
             @result.each do |row|
+              hrow = {}
               (0...row.length).each do |i|
                 field_name = tables[i].nil? ? fields[i] : "#{tables[i]}.#{fields[i]}"
-                yield field_name, row[i]
+                hrow[field_name] = row[i]
               end
+              yield hrow
             end
           end
         else
           query(the_query, { as: :hash, cache_rows: false })
           if @result != nil && block_given?
-            @result.each(with_table_names, &block)
+            @result.each(&block)
           end
         end
       rescue Mysql2::Error => e
@@ -195,10 +197,10 @@ module WIKK
     # @raise [Mysql] passes on Mysql errors, freeing the result.
     # @yieldparam [Hash] each result row
     # @note @result and @affected_rows are also set via call to query().
-    def each_sym(the_query, &block)
+    def each_sym(the_query)
       query(the_query, { symbolize_keys: true, as: :hash, cache_rows: false })
       if @result != nil && block_given?
-        @result.each(&block)
+        @result.each { |h| yield(**h) }
       end
     end
 
@@ -209,8 +211,8 @@ module WIKK
     def fetch_fields
       fields = @result.fields
       field_types = @result.field_types
-      tables = @result.respond_to(:tables) ? @result.tables : [] # My addition to mysql2 results.c
-      field_arr = []
+      tables = @result.respond_to?(:tables) ? @result.tables : [] # My addition to mysql2 results.c
+      fields_arr = []
       (0...@result.fields.length).each do |i|
         fields_arr[i] = MySQL_FIELD.new(
           name: fields[i],
@@ -218,7 +220,7 @@ module WIKK
           type: field_types[i]
         )
       end
-      return field_arr
+      return fields_arr
     end
 
     # Create WIKK::SQL instance and set up the mySQL2 connection, and Run a query on the DB server.

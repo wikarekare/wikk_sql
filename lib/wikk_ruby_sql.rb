@@ -172,7 +172,7 @@ module WIKK
     # @note @result and @affected_rows are also set via call to query().
     def each_sym(the_query)
       each_hash(the_query) do |row_hash|
-        yield row_hash.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+        yield(**row_hash.each_with_object({}) { |(k, v), h| h[k.to_sym] = v })
       end
     end
 
