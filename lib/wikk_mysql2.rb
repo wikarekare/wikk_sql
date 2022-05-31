@@ -171,16 +171,16 @@ module WIKK
           query(the_query, { as: :array, cache_rows: false })
           if @result != nil
             fields = @result.fields
-            tables = @result.respond_to(:tables) ? @result.tables : [] # My addition to mysql2 results.c
+            tables = @result.respond_to?(:tables) ? @result.tables : [] # My addition to mysql2 results.c
 
             result = []
             @result.each do |row|
-              hashed_row = {}
+              hrow = {}
               (0...row.length).each do |i|
                 field_name = tables[i].nil? ? fields[i] : "#{tables[i]}.#{fields[i]}"
-                hashed_row[field_name] = row[i]
-                yield field_name, row[i] if block_given?
+                hrow[field_name] = row[i]
               end
+              yield hrow
               result << hashed_row
             end
             return result
@@ -215,7 +215,7 @@ module WIKK
     # @yieldparam [Hash] each result row
     # @return [Array] If no block is given: of hashed rows with symbol keys.
     # @note @result and @affected_rows are also set via call to query().
-    def each_sym(the_query, &block)
+    def each_sym(the_query)
       query(the_query, { symbolize_keys: true, as: :hash, cache_rows: false })
       if @result != nil
         if block_given?
@@ -235,8 +235,8 @@ module WIKK
     def fetch_fields
       fields = @result.fields
       field_types = @result.field_types
-      tables = @result.respond_to(:tables) ? @result.tables : [] # My addition to mysql2 results.c
-      field_arr = []
+      tables = @result.respond_to?(:tables) ? @result.tables : [] # My addition to mysql2 results.c
+      fields_arr = []
       (0...@result.fields.length).each do |i|
         fields_arr[i] = MySQL_FIELD.new(
           name: fields[i],
@@ -244,7 +244,7 @@ module WIKK
           type: field_types[i]
         )
       end
-      return field_arr
+      return fields_arr
     end
 
     # Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.

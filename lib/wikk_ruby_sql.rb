@@ -190,6 +190,7 @@ module WIKK
           yield row_hash.transform_keys(& :to_sym )
         end
       else
+        result = []
         each_hash(the_query) do |row_hash|
           result << row_hash.transform_keys(& :to_sym )
         end
