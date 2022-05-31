@@ -30,11 +30,11 @@ module WIKK
   # Downside is, mysql2 doesn't expose field table names.
   begin
     Gem::Specification.find_by_name('mysql2')
-  rescue Gem::LoadError
+  rescue Gem::MissingSpecError
     begin
-      Gem::Specification.find_by_name('ruby-sql')
-    rescue Gem::LoadError
-      raise Gem::LoadError 'Need either mysql2 or ruby-mysql gems'
+      Gem::Specification.find_by_name('ruby-mysql')
+    rescue Gem::MissingSpecError
+      raise Gem::MissingSpecError 'Need either mysql2 or ruby-mysql gems'
     else
       require_relative 'wikk_ruby_mysql.rb'
     end
