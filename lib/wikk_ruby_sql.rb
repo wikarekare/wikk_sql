@@ -1,6 +1,5 @@
 # Provides common front end, even if we change the connector library
 # Connector is ruby-mysql native ruby gem
-
 module WIKK
   require 'mysql'
 
@@ -17,13 +16,13 @@ module WIKK
     # @return [NilClass] if block is given, and closes the mySQL connection.
     # @return [WIKK_SQL] if no block is given, and caller must call sql.close
     def self.connect(db_config)
-      sql = self.new
-      sql.connect(db_config)
+      sql = self.new          # Create an instance of WIKK::SQL
+      sql.connect(db_config)  # Connect to the database
       if block_given?
-        yield sql
-        return sql.close
+        yield sql             # Yield the instance, so caller can access methods
+        return sql.close      # Clean up at end of the callers block
       else
-        return sql
+        return sql            # Return new instance of WIKK::SQL
       end
     end
 
@@ -35,7 +34,7 @@ module WIKK
     # @return [WIKK_SQL] if no block is given, and caller must call sql.close
     def connect(db_config)
       if db_config.instance_of?(Hash)
-        sym = db_config.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+        sym = db_config.transform_keys(& :to_sym )
         db_config = Struct.new(*(k = sym.keys)).new(*sym.values_at(*k))
       end
 
@@ -121,13 +120,20 @@ module WIKK
     # @param the_query [String]  Sql query to send to DB server.
     # @raise [Mysql] passes on Mysql errors, freeing the result.
     # @yieldparam [Array] each result row
+    # @return [Array] Array of rows
     # @note @result and @affected_rows are also set via call to query().
     def each_row(the_query, &block)
       begin
         query(the_query)
-        if @result != nil && block_given?
+        unless @result.nil?
           @affected_rows = @result.num_rows # This is non-zero is we do a select, and get results.
-          @result.each(&block)
+          if block_given?
+            @result.each(&block)
+          else
+            result = []
+            @result.each { |row| result << row }
+            return result
+          end
         end
       rescue Mysql::Error => e
         # puts "#{e.errno}: #{e.error}"
@@ -145,13 +151,20 @@ module WIKK
     # @param with_table_names [Boolean] if TrueClass, then table names are included in the hash keys.
     # @raise [Mysql] passes on Mysql errors, freeing the result.
     # @yieldparam [Hash] each result row
+    # @return [Array] all rows, if no block is given
     # @note @result and @affected_rows are also set via call to query().
     def each_hash(the_query, with_table_names = false, &block)
       begin
         query(the_query)
-        if @result != nil && block_given?
+        unless @result.nil?
           @affected_rows = @result.num_rows # This is non-zero is we do a select, and get results.
-          @result.each_hash(with_table_names, &block)
+          if block_given?
+            @result.each_hash(with_table_names, &block)
+          else
+            result = []
+            @result.each_hash(with_table_names) { |row| result << row }
+            return result
+          end
         end
       rescue Mysql::Error => e
         # puts "#{e.errno}: #{e.error}"
@@ -169,10 +182,18 @@ module WIKK
     # @param the_query [String]  Sql query to send to DB server.
     # @raise [Mysql] passes on Mysql errors, freeing the result.
     # @yieldparam [Hash] each result row
+    # @return [Array] if no block is given, returns an Array of Hash'd rows, with symbol as the key
     # @note @result and @affected_rows are also set via call to query().
     def each_sym(the_query)
-      each_hash(the_query) do |row_hash|
-        yield row_hash.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+      if block_given?
+        each_hash(the_query) do |row_hash|
+          yield row_hash.transform_keys(& :to_sym )
+        end
+      else
+        each_hash(the_query) do |row_hash|
+          result << row_hash.transform_keys(& :to_sym )
+        end
+        return result
       end
     end
 
@@ -192,17 +213,15 @@ module WIKK
     # @yieldparam [Mysql::Result] @result and @affected_rows are also set.
     # @return [Mysql::Result] @result and @affected_rows are also set.
     def self.query(db_config, the_query)
-      sql = self.new
-      sql.open db_config
-      begin
+      self.connect db_config do |sql|
         result = sql.query(the_query)
         if block_given?
           yield result
+          return sql.affected_rows
+        else
+          return result
         end
-      ensure
-        sql.close
       end
-      return result
     end
 
     # Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.
@@ -214,16 +233,14 @@ module WIKK
     # @yieldparam [Array] each result row
     # @note @result and @affected_rows are also set via call to query().
     def self.each_row(db_config, query, &block)
-      sql = self.new
-      sql.open db_config
-      begin
+      self.connect db_config do |sql|
         if block_given?
           sql.each_row(query, &block)
+          return sql.affected_rows
+        else
+          return sql.each_row(query)
         end
-      ensure
-        sql.close
       end
-      return sql
     end
 
     # Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.
@@ -236,16 +253,14 @@ module WIKK
     # @yieldparam [Hash] each result row
     # @note @result and @affected_rows are also set via call to query().
     def self.each_hash(db_config, query, with_table_names = false, &block)
-      sql = self.new
-      sql.open db_config
-      begin
+      self.connect( db_config ) do |sql|
         if block_given?
           sql.each_hash(query, with_table_names, &block)
+          return sql.affected_rows
+        else
+          return sql.each_hash(query, with_table_names)
         end
-      ensure
-        sql.close
       end
-      return sql
     end
 
     # Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.
@@ -257,19 +272,15 @@ module WIKK
     # @raise [Mysql] passes on Mysql errors, freeing the result.
     # @yieldparam [Hash] each result row
     # @note @result and @affected_rows are also set via call to query().
-    def self.each_sym(db_config, query)
-      sql = self.new
-      sql.open db_config
-      begin
+    def self.each_sym(db_config, query, &block)
+      self.connect( db_config ) do |sql|
         if block_given?
-          sql.each_sym(query) do |**res|
-            yield(**res)
-          end
+          sql.each_sym(query, &block)
+          return sql  # May be useful to access the affected rows
+        else
+          return sql.each_sym(query)
         end
-      ensure
-        sql.close
       end
-      return sql
     end
   end
 end
