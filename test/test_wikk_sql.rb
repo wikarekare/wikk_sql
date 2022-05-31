@@ -8,76 +8,86 @@ require 'wikk_configuration'
 @config = WIKK::Configuration.new(ARGV[0])
 
 def test_class_lvl_each_row
-  puts 'test_class_lvl_each_row: select name, site_name from customer limit 2'
-  WIKK::SQL.each_row(@config, 'select name, site_name  from customer limit 2') do |row|
-    printf "%s, %s\n", row[0], row[1]
+  puts 'test_class_lvl_each_row: SELECT id, s FROM T1'
+  WIKK::SQL.each_row(@config, 'SELECT id, s FROM T1') do |row|
+    puts "id: #{row[0]}, s: #{row[1]}"
   end
 end
 
 def test_class_lvl_each_hash
-  puts 'test_class_lvl_each_hash: select * from customer limit 2'
-  WIKK::SQL.each_hash(@config, 'select * from customer limit 2') do |row|
+  puts 'test_class_lvl_each_hash: SELECT * FROM T1'
+  WIKK::SQL.each_hash(@config, 'SELECT * FROM T1') do |row|
     row.each do |k, v|
-      printf "  %s => %s\n", k, v
+      print "#{k}: #{v}}, "
     end
+    puts
   end
 end
 
 def test_class_lvl_each_sym
-  puts 'test_class_lvl_each_sym select * from customer limit 2'
-  WIKK::SQL.each_sym(@config, 'select * from customer limit 2') do |id:, name:, site_name:, **_row|
-    printf "customer_id %s  site_name %s name %s\n", id, site_name, name
+  puts 'test_class_lvl_each_sym SELECT * FROM T1'
+  WIKK::SQL.each_sym(@config, 'SELECT * FROM T1') do |id:, s:, **_row|
+    puts "id #{id} s #{s}"
   end
 end
 
 def test_class_lvl_each_hash_with_table_names
-  puts 'test_class_lvl_each_hash_with_table_names: select * from customer limit 2'
-  WIKK::SQL.each_hash(@config, 'select * from customer limit 2', with_table_names = true) do |row|
+  query = <<~SQL
+    SELECT T1.id, T1.s, T2.id, T2.s
+    FROM T1, T2, T3
+    WHERE T1.id = T3.id1
+    AND T3.id2 = T2.id
+  SQL
+  puts "test_class_lvl_each_hash_with_table_names: #{query}"
+  # with_table_names
+  WIKK::SQL.each_hash(@config, query, true) do |row|
     puts 'Row', row
     puts
     row.each do |k, v|
-      printf "  %s => %s\n", k, v
+      print "#{k}: #{v}}, "
     end
+    puts
   end
 end
 
 def test_instance_lvl_get_fields
-  puts 'test_instance_lvl_get_fields: select * from customer limit 1'
+  puts 'test_instance_lvl_get_fields: SELECT T1.id, T1.s FROM T1'
   WIKK::SQL.connect(@config) do |sql|
-    sql.query('select * from customer limit 1') do |_result|
+    sql.query('SELECT T1.id, T1.s FROM T1') do |_result|
       # puts result.fetch_fields[0].class
     end
     sql.fetch_fields.each_with_index do |info, i|
-      printf "Column %d (%s) ---\n", i, info.name
-      printf "table:            %s\n", info.table
-      printf "def:              %s\n", info.def
-      printf "type:             %s\n", info.type
-      #  printf "length:           %s\n", info.length
-      printf "max_length:       %s\n", info.max_length
-      printf "flags:            %s\n", info.flags
-      printf "decimals:         %s\n", info.decimals
+      puts "Column #{i} (#{info.name}) ---"
+      puts "table:            #{info.table}"
+      puts "def:              #{info.def}"
+      puts "type:             #{info.type}\n"
+      printf "length:           #{info.length}"
+      puts "max_length:       #{info.max_length}"
+      puts "flags:            #{info.flags}\n"
+      puts "decimals:         #{info.decimals}"
     end
   end
 end
 
 def test_instance_lvl_each_row
-  puts 'test_instance_lvl_each_row: select name, site_name from customer limit 2'
+  puts 'test_instance_lvl_each_row: SELECT id, s FROM T1'
   WIKK::SQL.connect(@config) do |sql|
-    sql.each_row('select name, site_name from customer limit 2') do |row|
-      printf "%s, %s\n", row[0], row[1]
+    sql.each_row('SELECT id, s FROM T1') do |row|
+      puts "id: #{row[0]}, s: #{row[1]}"
     end
     puts "Number of rows returned: #{sql.affected_rows}"
   end
 end
 
 def test_instance_lvl_each_hash
-  puts 'test_instance_lvl_each_hash: select * from customer limit 2'
+  puts 'test_instance_lvl_each_hash: SELECT * FROM T1'
   WIKK::SQL.connect(@config) do |sql|
-    sql.each_hash('select * from customer limit 2') do |row|
+    sql.each_hash('SELECT * FROM T1') do |row|
       puts 'Row'
       row.each do |k, v|
-        printf "  %s => %s\n", k, v
+        print "#{k}: #{v}}, "
       end
+      puts
     end
     puts "Number of rows returned: #{sql.affected_rows}"
   end
@@ -87,11 +97,11 @@ def test_transaction
   puts 'test_transaction: select site_name, state, INET_NTOA(network + ...'
   WIKK::SQL.connect(@config) do |sql|
     sql.transaction do
-      sql.each_row('select customer_id, site_name from customer limit 1') do |row|
-        printf "%s, %s\n", row[0], row[1]
+      sql.each_row('SELECT id, s, n FROM T1') do |row|
+        puts "#{row[0]}, #{row[1]} #{row[2]}"
       end
-      sql.each_row('select distribution_id, site_name from distribution limit 1') do |row|
-        printf "%s, %s\n", row[0], row[1]
+      sql.each_row('SELECT id, s FROM T2') do |row|
+        puts "#{row[0]}, #{row[1]}"
       end
     end
   end
@@ -109,8 +119,8 @@ puts
 puts '*****Test each row********'
 test_class_lvl_each_hash_with_table_names
 puts
-puts '*****Test get fields********'
-test_instance_lvl_get_fields
+# puts '*****Test get fields********'
+# test_instance_lvl_get_fields
 puts
 puts '*****Test transaction 1 customer, 1 distribution ********'
 test_transaction
