@@ -1,8 +1,8 @@
+require 'mysql2'
+
 # Provides common front end, even if we change the connector library
 # Connector is mysql2. Requires libmysql-dev or libmariadb-dev to install the gem.
 module WIKK
-  require 'mysql2'
-
   # WIKK_SQL wrapper for ruby mysql gem.
   # @attr_reader [Numeric] affected_rows the number of rows changed, deleted, or added.
   # @attr_reader [Mysql::Result] result the last query's result
@@ -228,6 +228,27 @@ module WIKK
       end
     end
 
+    # Yields query result row by row, as Hash using Symbol keys, so can't have table names included.
+    # This can be used with keyword arguments. eg. each_sym { |key1:, key2:, ..., **rest_of_args| do something }
+    #
+    # @param the_query [String]  Sql query to send to DB server.
+    # @raise [Mysql] passes on Mysql errors, freeing the result.
+    # @yieldparam [**Hash] each result row
+    # @return [Array] If no block is given: of hashed rows with symbol keys.
+    # @note @result and @affected_rows are also set via call to query().
+    def each_param(the_query)
+      query(the_query, { symbolize_keys: true, as: :hash, cache_rows: false })
+      if @result != nil
+        if block_given?
+          @result.each { |row| yield(**row) }
+        else
+          result = []
+          @result.each { |row| result << row }
+          return result
+        end
+      end
+    end
+
     # Get the database field attributes from a query result.
     #
     # @return [Array][Mysql::Field] Array of field records
@@ -318,6 +339,26 @@ module WIKK
       self.connect( db_config ) do |sql|
         if block_given?
           sql.each_sym(query, &block)
+          return sql  # May be useful to access the affected rows
+        else
+          return sql.each_sym(query)
+        end
+      end
+    end
+
+    # Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.
+    # Yields query result row by row, as Hash using Symbol keys, so can't have table names included.
+    #
+    # @param db_config [Configuration]  Configuration class, Hash, or any class with appropriate attr_readers.
+    # This can be used with keyword arguments. eg. each_sym { |key1:, key2:, ..., **rest_of_args| do something }
+    # @param the_query [String]  Sql query to send to DB server.
+    # @raise [Mysql] passes on Mysql errors, freeing the result.
+    # @yieldparam [**Hash] for each result row, which can be passed to named args in a block
+    # @note @result and @affected_rows are also set via call to query().
+    def self.each_param(db_config, query, &block)
+      self.connect( db_config ) do |sql|
+        if block_given?
+          sql.each_param(query, &block)
           return sql  # May be useful to access the affected rows
         else
           return sql.each_sym(query)
