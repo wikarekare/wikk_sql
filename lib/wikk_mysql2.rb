@@ -138,7 +138,7 @@ module WIKK
         query(the_query, { as: :array, cache_rows: false })
         unless @result.nil?
           if block_given?
-            @affected_rows = @result.num_rows # This is non-zero is we do a select, and get results.
+            @affected_rows = @result.count # This is non-zero is we do a select, and get results.
             @result.each(&block)
           else
             result = []
@@ -215,7 +215,7 @@ module WIKK
     # @yieldparam [Hash] each result row
     # @return [Array] If no block is given: of hashed rows with symbol keys.
     # @note @result and @affected_rows are also set via call to query().
-    def each_sym(the_query)
+    def each_sym(the_query, &block)
       query(the_query, { symbolize_keys: true, as: :hash, cache_rows: false })
       if @result != nil
         if block_given?

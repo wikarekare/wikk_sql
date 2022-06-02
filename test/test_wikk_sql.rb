@@ -18,7 +18,7 @@ def test_class_lvl_each_hash
   puts 'test_class_lvl_each_hash: SELECT * FROM T1'
   WIKK::SQL.each_hash(@config, 'SELECT * FROM T1') do |row|
     row.each do |k, v|
-      print "#{k}: #{v}}, "
+      print "#{k}: #{v}, "
     end
     puts
   end
@@ -44,7 +44,7 @@ def test_class_lvl_each_hash_with_table_names
     puts 'Row', row
     puts
     row.each do |k, v|
-      print "#{k}: #{v}}, "
+      print "#{k}: #{v}, "
     end
     puts
   end
@@ -85,7 +85,7 @@ def test_instance_lvl_each_hash
     sql.each_hash('SELECT * FROM T1') do |row|
       puts 'Row'
       row.each do |k, v|
-        print "#{k}: #{v}}, "
+        print "#{k}: #{v}, "
       end
       puts
     end
