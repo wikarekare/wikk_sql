@@ -190,7 +190,7 @@ module WIKK
                 hrow[field_name] = row[i]
               end
               yield hrow
-              result << hashed_row
+              result << hrow
             end
             return result
           end
