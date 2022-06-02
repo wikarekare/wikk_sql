@@ -271,6 +271,7 @@ module WIKK
         fields_arr[i] = MySQL_FIELD.new(
           name: fields[i],
           table: tables[i],
+          db: databases[i],
           type: field_types[i]
         )
       end

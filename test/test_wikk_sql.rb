@@ -60,8 +60,8 @@ def test_class_lvl_each_hash_with_table_names
   end
 end
 
-def test_instance_lvl_get_fields
-  puts 'test_instance_lvl_get_fields: SELECT T1.id, T1.s FROM T1'
+def test_instance_lvl_get_field_info
+  puts 'test_instance_lvl_get_field_info: SELECT T1.id, T1.s FROM T1'
   WIKK::SQL.connect(@config) do |sql|
     sql.query('SELECT T1.id, T1.s FROM T1') do |_result|
       # puts result.fetch_fields[0].class
@@ -104,7 +104,7 @@ def test_instance_lvl_each_hash
 end
 
 def test_transaction
-  puts 'test_transaction: select site_name, state, INET_NTOA(network + ...'
+  puts 'test_transaction: Just does two queries in a transaction. Needs better test'
   WIKK::SQL.connect(@config) do |sql|
     sql.transaction do
       sql.each_row('SELECT id, s, n FROM T1') do |row|
@@ -129,11 +129,11 @@ puts
 puts '*****Test Class level each param********'
 test_class_lvl_each_param
 puts
-puts '*****Test each row********'
+puts '*****Test each hash, with table names********'
 test_class_lvl_each_hash_with_table_names
 puts
-# puts '*****Test get fields********'
-# test_instance_lvl_get_fields
+# puts '*****Test get field info********'
+# test_instance_lvl_get_field_info
 puts
 puts '*****Test transaction 1 customer, 1 distribution ********'
 test_transaction
