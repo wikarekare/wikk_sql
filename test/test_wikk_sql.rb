@@ -26,7 +26,17 @@ end
 
 def test_class_lvl_each_sym
   puts 'test_class_lvl_each_sym SELECT * FROM T1'
-  WIKK::SQL.each_sym(@config, 'SELECT * FROM T1') do |id:, s:, **_row|
+  WIKK::SQL.each_sym(@config, 'SELECT * FROM T1') do |row|
+    row.each do |k, v|
+      print "#{k}: #{v}, "
+    end
+    puts
+  end
+end
+
+def test_class_lvl_each_param
+  puts 'test_class_lvl_each_param SELECT * FROM T1'
+  WIKK::SQL.each_param(@config, 'SELECT * FROM T1') do |id:, s:, **_row|
     puts "id #{id} s #{s}"
   end
 end
@@ -115,6 +125,9 @@ test_class_lvl_each_hash
 puts
 puts '*****Test Class level each sym********'
 test_class_lvl_each_sym
+puts
+puts '*****Test Class level each param********'
+test_class_lvl_each_param
 puts
 puts '*****Test each row********'
 test_class_lvl_each_hash_with_table_names
