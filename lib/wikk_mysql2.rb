@@ -75,11 +75,16 @@ module WIKK
     # Call underlying connector's escape of the query string
     # @param query [String] The SQL query
     # @return [String] The SQL query, escaped to remove vulnerabilities
+    def self.escape(query)
+      Mysql2::Client.escape(query)
+    end
+
+    # Call underlying connector's escape of the query string
+    # @param query [String] The SQL query
+    # @return [String] The SQL query, escaped to remove vulnerabilities
     def escape(query)
       @my.escape(query)
     end
-    alias quote escape
-    alias escape_string escape
 
     # Run a query on the DB server.
     #
