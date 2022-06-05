@@ -71,6 +71,13 @@ module WIKK
       Mysql.escape_string(query)
     end
 
+    # Call underlying connector's escape of the query string
+    # @param query [String] The SQL query
+    # @return [String] The SQL query, escaped to remove vulnerabilities
+    def self.escape(query)
+      Mysql.escape_string(query)
+    end
+
     # Run a query on the DB server.
     #
     # @param the_query [String]  Sql query to send to DB server.
