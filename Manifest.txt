@@ -3,3 +3,5 @@ Manifest.txt
 README.md
 Rakefile
 lib/wikk_sql.rb
+lib/wikk_ruby_mysql.rb
+lib/wikk_mysql2.rb
