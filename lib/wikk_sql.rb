@@ -23,7 +23,7 @@ module WIKK
   )
 
   class SQL
-    VERSION = '0.2.0'
+    VERSION = '0.2.1'
   end
 
   # Prefer mysql2 over ruby-mysql, as it is faster
