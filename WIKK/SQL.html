@@ -94,15 +94,16 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/wikk_sql.rb</dd>
+    <dd>lib/wikk_mysql2.rb<span class="defines">,<br />
+  lib/wikk_ruby_mysql.rb,<br /> lib/wikk_sql.rb</span>
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>WIKK_SQL wrapper for ruby mysql gem.</p>
+    <p>WIKK_SQL wrapper for ruby mysql gem.</p>
 
 
   </div>
@@ -122,7 +123,7 @@
         <dt id="VERSION-constant" class="">VERSION =
           
         </dt>
-        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>0.1.4</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>0.2.1</span><span class='tstring_end'>&#39;</span></span></pre></dd>
       
     </dl>
   
@@ -155,8 +156,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>the number of rows changed, deleted, or added.</p>
+    <span class="summary_desc"><div class='inline'><p>the number of rows changed, deleted, or added.</p>
 </div></span>
   
 </li>
@@ -184,8 +184,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>the DB connection descriptor.</p>
+    <span class="summary_desc"><div class='inline'><p>the DB connection descriptor.</p>
 </div></span>
   
 </li>
@@ -213,8 +212,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>the last query&#39;s result.</p>
+    <span class="summary_desc"><div class='inline'><p>the last query’s result.</p>
 </div></span>
   
 </li>
@@ -250,8 +248,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Create WIKK::SQL instance and set up the mySQL connection.</p>
+    <span class="summary_desc"><div class='inline'><p>Create WIKK::SQL instance and set up the mySQL connection.</p>
 </div></span>
   
 </li>
@@ -274,8 +271,30 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.</p>
+    <span class="summary_desc"><div class='inline'><p>Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#each_param-class_method" title="each_param (class method)">.<strong>each_param</strong>(db_config, query) {|for| ... } &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.</p>
 </div></span>
   
 </li>
@@ -298,8 +317,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.</p>
+    <span class="summary_desc"><div class='inline'><p>Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.</p>
 </div></span>
   
 </li>
@@ -322,8 +340,30 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.</p>
+    <span class="summary_desc"><div class='inline'><p>Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#escape-class_method" title="escape (class method)">.<strong>escape</strong>(query)  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Call underlying connector’s escape of the query string.</p>
 </div></span>
   
 </li>
@@ -346,8 +386,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.</p>
+    <span class="summary_desc"><div class='inline'><p>Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.</p>
 </div></span>
   
 </li>
@@ -379,8 +418,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>close the mySQL connection.</p>
+    <span class="summary_desc"><div class='inline'><p>close the mySQL connection.</p>
 </div></span>
   
 </li>
@@ -405,8 +443,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Set up the mySQL connection.</p>
+    <span class="summary_desc"><div class='inline'><p>Set up the mySQL connection.</p>
 </div></span>
   
 </li>
@@ -415,7 +452,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#each_hash-instance_method" title="#each_hash (instance method)">#<strong>each_hash</strong>(the_query, with_table_names = false) {|each| ... } &#x21d2; Object </a>
+      <a href="#each_hash-instance_method" title="#each_hash (instance method)">#<strong>each_hash</strong>(the_query, with_table_names = false) {|each| ... } &#x21d2; Array </a>
     
 
     
@@ -429,8 +466,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Yields query result row by row, as Hash, using String keys.</p>
+    <span class="summary_desc"><div class='inline'><p>Yields query result row by row, as Hash, using String keys.</p>
 </div></span>
   
 </li>
@@ -439,7 +475,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#each_row-instance_method" title="#each_row (instance method)">#<strong>each_row</strong>(the_query) {|each| ... } &#x21d2; Object </a>
+      <a href="#each_param-instance_method" title="#each_param (instance method)">#<strong>each_param</strong>(the_query) {|each| ... } &#x21d2; Array </a>
     
 
     
@@ -453,8 +489,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Yields query query results row by row, as Array.</p>
+    <span class="summary_desc"><div class='inline'><p>Yields query result row by row, as **Hash using Symbol keys, so can’t have table names included.</p>
 </div></span>
   
 </li>
@@ -463,7 +498,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#each_sym-instance_method" title="#each_sym (instance method)">#<strong>each_sym</strong>(the_query) {|each| ... } &#x21d2; Object </a>
+      <a href="#each_row-instance_method" title="#each_row (instance method)">#<strong>each_row</strong>(the_query) {|each| ... } &#x21d2; Array </a>
     
 
     
@@ -477,8 +512,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Yields query result row by row, as Hash using Symbol keys, so can&#39;t have table names included.</p>
+    <span class="summary_desc"><div class='inline'><p>Yields query query results row by row, as Array.</p>
 </div></span>
   
 </li>
@@ -487,7 +521,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#fetch_fields-instance_method" title="#fetch_fields (instance method)">#<strong>fetch_fields</strong> {|[Mysql::Field]| ... } &#x21d2; Object </a>
+      <a href="#each_sym-instance_method" title="#each_sym (instance method)">#<strong>each_sym</strong>(the_query) {|each| ... } &#x21d2; Array </a>
     
 
     
@@ -501,8 +535,53 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Get the database field attributes from a query result.</p>
+    <span class="summary_desc"><div class='inline'><p>Yields query result row by row, as Hash using Symbol keys, so can’t have table names included.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#escape-instance_method" title="#escape (instance method)">#<strong>escape</strong>(query)  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Call underlying connector’s escape of the query string.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fetch_fields-instance_method" title="#fetch_fields (instance method)">#<strong>fetch_fields</strong>  &#x21d2; Array </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Get the database field attributes from a query result.</p>
 </div></span>
   
 </li>
@@ -525,8 +604,76 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Run a query on the DB server.</p>
+    <span class="summary_desc"><div class='inline'><p>Run a query on the DB server.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#query_array-instance_method" title="#query_array (instance method)">#<strong>query_array</strong> {|each| ... } &#x21d2; Array </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Yields query query results row by row, as Array.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#query_hash-instance_method" title="#query_hash (instance method)">#<strong>query_hash</strong> {|each| ... } &#x21d2; Array </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Yields query result row by row, as Hash, using String keys.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#query_sym-instance_method" title="#query_sym (instance method)">#<strong>query_sym</strong> {|each| ... } &#x21d2; Array </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Yields query result row by row, as Hash using Symbol keys, so can’t have table names included.</p>
 </div></span>
   
 </li>
@@ -549,8 +696,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Perform a transaction in the passed block.</p>
+    <span class="summary_desc"><div class='inline'><p>Perform a transaction in the passed block.</p>
 </div></span>
   
 </li>
@@ -576,8 +722,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>the number of rows changed, deleted, or added.</p>
+    <p>the number of rows changed, deleted, or added.</p>
 
 
   </div>
@@ -595,8 +740,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the current value of affected_rows</p>
+        <div class='inline'><p>the current value of affected_rows</p>
 </div>
       
     </li>
@@ -614,7 +758,7 @@
 12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wikk_sql.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'lib/wikk_mysql2.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_affected_rows'>affected_rows</span>
   <span class='ivar'>@affected_rows</span>
@@ -637,8 +781,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>the DB connection descriptor</p>
+    <p>the DB connection descriptor</p>
 
 
   </div>
@@ -656,8 +799,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the current value of my</p>
+        <div class='inline'><p>the current value of my</p>
 </div>
       
     </li>
@@ -675,7 +817,7 @@
 12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wikk_sql.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'lib/wikk_mysql2.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_my'>my</span>
   <span class='ivar'>@my</span>
@@ -698,8 +840,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>the last query&#39;s result</p>
+    <p>the last query’s result</p>
 
 
   </div>
@@ -717,8 +858,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the current value of result</p>
+        <div class='inline'><p>the current value of result</p>
 </div>
       
     </li>
@@ -736,7 +876,7 @@
 12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wikk_sql.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'lib/wikk_mysql2.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_result'>result</span>
   <span class='ivar'>@result</span>
@@ -764,8 +904,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Create WIKK::SQL instance and set up the mySQL connection.</p>
+    <p>Create WIKK::SQL instance and set up the mySQL connection.</p>
 
 
   </div>
@@ -784,8 +923,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Configuration class, Hash, or any class with appropriate attr_readers.</p>
+        <div class='inline'><p>Configuration class, Hash, or any class with appropriate attr_readers.</p>
 </div>
       
     </li>
@@ -805,8 +943,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>if a block is given.</p>
+        <div class='inline'><p>if a block is given.</p>
 </div>
       
     </li>
@@ -823,8 +960,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>if block is given, and closes the mySQL connection.</p>
+        <div class='inline'><p>if block is given, and closes the mySQL connection.</p>
 </div>
       
     </li>
@@ -837,8 +973,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>if no block is given, and caller must call sql.close</p>
+        <div class='inline'><p>if no block is given, and caller must call sql.close</p>
 </div>
       
     </li>
@@ -851,6 +986,8 @@
       <pre class="lines">
 
 
+18
+19
 20
 21
 22
@@ -858,12 +995,10 @@
 24
 25
 26
-27
-28
-29</pre>
+27</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wikk_sql.rb', line 20</span>
+      <pre class="code"><span class="info file"># File 'lib/wikk_mysql2.rb', line 18</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_connect'>connect</span><span class='lparen'>(</span><span class='id identifier rubyid_db_config'>db_config</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_sql'>sql</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -894,13 +1029,12 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p>@result and @affected_rows are also set via call to query().</p>
+    <div class='inline'><p>@result and @affected_rows are also set via call to query().</p>
 </div>
   </div>
 
-
-<p>Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server. Yields query result row by row, as Hash, using String keys</p>
+<p>Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.
+Yields query result row by row, as Hash, using String keys</p>
 
 
   </div>
@@ -919,8 +1053,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Configuration class, Hash, or any class with appropriate attr_readers.</p>
+        <div class='inline'><p>Configuration class, Hash, or any class with appropriate attr_readers.</p>
 </div>
       
     </li>
@@ -935,8 +1068,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Sql query to send to DB server.</p>
+        <div class='inline'><p>Sql query to send to DB server.</p>
 </div>
       
     </li>
@@ -953,8 +1085,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>if TrueClass, then table names are included in the hash keys.</p>
+        <div class='inline'><p>if TrueClass, then table names are included in the hash keys.</p>
 </div>
       
     </li>
@@ -974,8 +1105,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>result row</p>
+        <div class='inline'><p>result row</p>
 </div>
       
     </li>
@@ -992,8 +1122,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>passes on Mysql errors, freeing the result.</p>
+        <div class='inline'><p>passes on Mysql errors, freeing the result.</p>
 </div>
       
     </li>
@@ -1006,37 +1135,171 @@
       <pre class="lines">
 
 
-229
-230
-231
-232
-233
-234
-235
-236
-237
-238
-239
-240
-241
-242</pre>
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wikk_sql.rb', line 229</span>
+      <pre class="code"><span class="info file"># File 'lib/wikk_mysql2.rb', line 333</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_each_hash'>each_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_db_config'>db_config</span><span class='comma'>,</span> <span class='id identifier rubyid_query'>query</span><span class='comma'>,</span> <span class='id identifier rubyid_with_table_names'>with_table_names</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_sql'>sql</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-  <span class='id identifier rubyid_sql'>sql</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span> <span class='id identifier rubyid_db_config'>db_config</span>
-  <span class='kw'>begin</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_each_hash'>each_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_db_config'>db_config</span><span class='comma'>,</span> <span class='id identifier rubyid_query'>query</span><span class='comma'>,</span> <span class='id identifier rubyid_with_table_names'>with_table_names</span> <span class='op'>=</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_connect'>connect</span><span class='lparen'>(</span> <span class='id identifier rubyid_db_config'>db_config</span> <span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_sql'>sql</span><span class='op'>|</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
-      <span class='id identifier rubyid_sql'>sql</span><span class='period'>.</span><span class='id identifier rubyid_each_hash'>each_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='comma'>,</span> <span class='id identifier rubyid_with_table_names'>with_table_names</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_res'>res</span><span class='op'>|</span>
-        <span class='kw'>yield</span> <span class='id identifier rubyid_res'>res</span>
-      <span class='kw'>end</span>
+      <span class='id identifier rubyid_sql'>sql</span><span class='period'>.</span><span class='id identifier rubyid_each_hash'>each_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='comma'>,</span> <span class='id identifier rubyid_with_table_names'>with_table_names</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+      <span class='kw'>return</span> <span class='id identifier rubyid_sql'>sql</span><span class='period'>.</span><span class='id identifier rubyid_affected_rows'>affected_rows</span>
+    <span class='kw'>else</span>
+      <span class='kw'>return</span> <span class='id identifier rubyid_sql'>sql</span><span class='period'>.</span><span class='id identifier rubyid_each_hash'>each_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='comma'>,</span> <span class='id identifier rubyid_with_table_names'>with_table_names</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
-  <span class='kw'>ensure</span>
-    <span class='id identifier rubyid_sql'>sql</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
   <span class='kw'>end</span>
-  <span class='kw'>return</span> <span class='id identifier rubyid_sql'>sql</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="each_param-class_method">
+  
+    .<strong>each_param</strong>(db_config, query) {|for| ... } &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>@result and @affected_rows are also set via call to query().</p>
+</div>
+  </div>
+
+<p>Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.
+Yields query result row by row, as Hash using Symbol keys, so can’t have table names included.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>This can be used with keyword arguments. eg. each_sym {</td>
+      <td>key1:, key2:, …, **rest_of_args</td>
+      <td>do something }</td>
+    </tr>
+  </tbody>
+</table>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>db_config</span>
+      
+      
+        <span class='type'>(<tt>Configuration</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Configuration class, Hash, or any class with appropriate attr_readers.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>the_query</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Sql query to send to DB server.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Yield Parameters:</p>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>for</span>
+      
+      
+        <span class='type'>(<tt>**Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>each result row, which can be passed to named args in a block</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Mysql</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>passes on Mysql errors, freeing the result.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/wikk_mysql2.rb', line 373</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_each_param'>each_param</span><span class='lparen'>(</span><span class='id identifier rubyid_db_config'>db_config</span><span class='comma'>,</span> <span class='id identifier rubyid_query'>query</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_connect'>connect</span><span class='lparen'>(</span> <span class='id identifier rubyid_db_config'>db_config</span> <span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_sql'>sql</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+      <span class='id identifier rubyid_sql'>sql</span><span class='period'>.</span><span class='id identifier rubyid_each_param'>each_param</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+      <span class='kw'>return</span> <span class='id identifier rubyid_sql'>sql</span>  <span class='comment'># May be useful to access the affected rows
+</span>    <span class='kw'>else</span>
+      <span class='kw'>return</span> <span class='id identifier rubyid_sql'>sql</span><span class='period'>.</span><span class='id identifier rubyid_each_sym'>each_sym</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1057,13 +1320,12 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p>@result and @affected_rows are also set via call to query().</p>
+    <div class='inline'><p>@result and @affected_rows are also set via call to query().</p>
 </div>
   </div>
 
-
-<p>Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server. Yields query query results row by row, as Array</p>
+<p>Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.
+Yields query query results row by row, as Array</p>
 
 
   </div>
@@ -1082,8 +1344,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Configuration class, Hash, or any class with appropriate attr_readers.</p>
+        <div class='inline'><p>Configuration class, Hash, or any class with appropriate attr_readers.</p>
 </div>
       
     </li>
@@ -1098,8 +1359,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Sql query to send to DB server.</p>
+        <div class='inline'><p>Sql query to send to DB server.</p>
 </div>
       
     </li>
@@ -1119,8 +1379,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>result row</p>
+        <div class='inline'><p>result row</p>
 </div>
       
     </li>
@@ -1137,8 +1396,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>passes on Mysql errors, freeing the result.</p>
+        <div class='inline'><p>passes on Mysql errors, freeing the result.</p>
 </div>
       
     </li>
@@ -1151,33 +1409,29 @@
       <pre class="lines">
 
 
-208
-209
-210
-211
-212
-213
-214
-215
-216
-217
-218
-219</pre>
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wikk_sql.rb', line 208</span>
+      <pre class="code"><span class="info file"># File 'lib/wikk_mysql2.rb', line 313</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_each_row'>each_row</span><span class='lparen'>(</span><span class='id identifier rubyid_db_config'>db_config</span><span class='comma'>,</span> <span class='id identifier rubyid_query'>query</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_sql'>sql</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-  <span class='id identifier rubyid_sql'>sql</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span> <span class='id identifier rubyid_db_config'>db_config</span>
-  <span class='kw'>begin</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_each_row'>each_row</span><span class='lparen'>(</span><span class='id identifier rubyid_db_config'>db_config</span><span class='comma'>,</span> <span class='id identifier rubyid_query'>query</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_connect'>connect</span> <span class='id identifier rubyid_db_config'>db_config</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_sql'>sql</span><span class='op'>|</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
-      <span class='id identifier rubyid_sql'>sql</span><span class='period'>.</span><span class='id identifier rubyid_each_row'>each_row</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_y'>y</span><span class='op'>|</span> <span class='kw'>yield</span> <span class='id identifier rubyid_y'>y</span> <span class='rbrace'>}</span>
+      <span class='id identifier rubyid_sql'>sql</span><span class='period'>.</span><span class='id identifier rubyid_each_row'>each_row</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+      <span class='kw'>return</span> <span class='id identifier rubyid_sql'>sql</span><span class='period'>.</span><span class='id identifier rubyid_affected_rows'>affected_rows</span>
+    <span class='kw'>else</span>
+      <span class='kw'>return</span> <span class='id identifier rubyid_sql'>sql</span><span class='period'>.</span><span class='id identifier rubyid_each_row'>each_row</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
-  <span class='kw'>ensure</span>
-    <span class='id identifier rubyid_sql'>sql</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
   <span class='kw'>end</span>
-  <span class='kw'>return</span> <span class='id identifier rubyid_sql'>sql</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1198,13 +1452,22 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p>@result and @affected_rows are also set via call to query().</p>
+    <div class='inline'><p>@result and @affected_rows are also set via call to query().</p>
 </div>
   </div>
 
+<p>Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.
+Yields query result row by row, as Hash using Symbol keys, so can’t have table names included.</p>
 
-<p>Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server. Yields query result row by row, as Hash using Symbol keys, so can&#39;t have table names included. This can be used with keyword arguments. eg. each_sym { |key1:, key2:, …, **rest_of_args| do something }</p>
+<table>
+  <tbody>
+    <tr>
+      <td>This can be used with keyword arguments. eg. each_sym {</td>
+      <td>key1:, key2:, …, **rest_of_args</td>
+      <td>do something }</td>
+    </tr>
+  </tbody>
+</table>
 
 
   </div>
@@ -1223,8 +1486,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Configuration class, Hash, or any class with appropriate attr_readers.</p>
+        <div class='inline'><p>Configuration class, Hash, or any class with appropriate attr_readers.</p>
 </div>
       
     </li>
@@ -1239,8 +1501,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Sql query to send to DB server.</p>
+        <div class='inline'><p>Sql query to send to DB server.</p>
 </div>
       
     </li>
@@ -1260,8 +1521,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>result row</p>
+        <div class='inline'><p>result row</p>
 </div>
       
     </li>
@@ -1278,8 +1538,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>passes on Mysql errors, freeing the result.</p>
+        <div class='inline'><p>passes on Mysql errors, freeing the result.</p>
 </div>
       
     </li>
@@ -1292,37 +1551,105 @@
       <pre class="lines">
 
 
-252
-253
-254
-255
-256
-257
-258
-259
-260
-261
-262
-263
-264
-265</pre>
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wikk_sql.rb', line 252</span>
+      <pre class="code"><span class="info file"># File 'lib/wikk_mysql2.rb', line 353</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_each_sym'>each_sym</span><span class='lparen'>(</span><span class='id identifier rubyid_db_config'>db_config</span><span class='comma'>,</span> <span class='id identifier rubyid_query'>query</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_sql'>sql</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-  <span class='id identifier rubyid_sql'>sql</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span> <span class='id identifier rubyid_db_config'>db_config</span>
-  <span class='kw'>begin</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_each_sym'>each_sym</span><span class='lparen'>(</span><span class='id identifier rubyid_db_config'>db_config</span><span class='comma'>,</span> <span class='id identifier rubyid_query'>query</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_connect'>connect</span><span class='lparen'>(</span> <span class='id identifier rubyid_db_config'>db_config</span> <span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_sql'>sql</span><span class='op'>|</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
-      <span class='id identifier rubyid_sql'>sql</span><span class='period'>.</span><span class='id identifier rubyid_each_sym'>each_sym</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>**</span><span class='id identifier rubyid_res'>res</span><span class='op'>|</span>
-        <span class='kw'>yield</span> <span class='op'>**</span><span class='id identifier rubyid_res'>res</span>
-      <span class='kw'>end</span>
+      <span class='id identifier rubyid_sql'>sql</span><span class='period'>.</span><span class='id identifier rubyid_each_sym'>each_sym</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+      <span class='kw'>return</span> <span class='id identifier rubyid_sql'>sql</span>  <span class='comment'># May be useful to access the affected rows
+</span>    <span class='kw'>else</span>
+      <span class='kw'>return</span> <span class='id identifier rubyid_sql'>sql</span><span class='period'>.</span><span class='id identifier rubyid_each_sym'>each_sym</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
-  <span class='kw'>ensure</span>
-    <span class='id identifier rubyid_sql'>sql</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
   <span class='kw'>end</span>
-  <span class='kw'>return</span> <span class='id identifier rubyid_sql'>sql</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="escape-class_method">
+  
+    .<strong>escape</strong>(query)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Call underlying connector’s escape of the query string</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>query</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The SQL query</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The SQL query, escaped to remove vulnerabilities</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+78
+79
+80</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/wikk_mysql2.rb', line 78</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_escape'>escape</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='rparen'>)</span>
+  <span class='const'>Mysql2</span><span class='op'>::</span><span class='const'>Client</span><span class='period'>.</span><span class='id identifier rubyid_escape'>escape</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1340,8 +1667,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.</p>
+    <p>Create WIKK::SQL instance and set up the mySQL connection, and Run a query on the DB server.</p>
 
 
   </div>
@@ -1360,8 +1686,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Configuration class, Hash, or any class with appropriate attr_readers.</p>
+        <div class='inline'><p>Configuration class, Hash, or any class with appropriate attr_readers.</p>
 </div>
       
     </li>
@@ -1376,8 +1701,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Sql query to send to DB server.</p>
+        <div class='inline'><p>Sql query to send to DB server.</p>
 </div>
       
     </li>
@@ -1397,8 +1721,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>and @affected_rows are also set.</p>
+        <div class='inline'><p>and @affected_rows are also set.</p>
 </div>
       
     </li>
@@ -1415,8 +1738,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>@result and @affected_rows are also set.</p>
+        <div class='inline'><p>@result and @affected_rows are also set.</p>
 </div>
       
     </li>
@@ -1433,8 +1755,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>passes on Mysql errors, freeing the result.</p>
+        <div class='inline'><p>passes on Mysql errors, freeing the result.</p>
 </div>
       
     </li>
@@ -1447,35 +1768,31 @@
       <pre class="lines">
 
 
-187
-188
-189
-190
-191
-192
-193
-194
-195
-196
-197
-198
-199</pre>
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wikk_sql.rb', line 187</span>
+      <pre class="code"><span class="info file"># File 'lib/wikk_mysql2.rb', line 293</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_db_config'>db_config</span><span class='comma'>,</span> <span class='id identifier rubyid_the_query'>the_query</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_sql'>sql</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-  <span class='id identifier rubyid_sql'>sql</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span> <span class='id identifier rubyid_db_config'>db_config</span>
-  <span class='kw'>begin</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_connect'>connect</span> <span class='id identifier rubyid_db_config'>db_config</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_sql'>sql</span><span class='op'>|</span>
     <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_sql'>sql</span><span class='period'>.</span><span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='rparen'>)</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
       <span class='kw'>yield</span> <span class='id identifier rubyid_result'>result</span>
+      <span class='kw'>return</span> <span class='id identifier rubyid_sql'>sql</span><span class='period'>.</span><span class='id identifier rubyid_affected_rows'>affected_rows</span>
+    <span class='kw'>else</span>
+      <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
     <span class='kw'>end</span>
-  <span class='kw'>ensure</span>
-    <span class='id identifier rubyid_sql'>sql</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
   <span class='kw'>end</span>
-  <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1499,8 +1816,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>close the mySQL connection. Call only if connect was not given a block.</p>
+    <p>close the mySQL connection. Call only if connect was not given a block.</p>
 
 
   </div>
@@ -1527,13 +1843,13 @@
       <pre class="lines">
 
 
-61
-62
-63
-64</pre>
+70
+71
+72
+73</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wikk_sql.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'lib/wikk_mysql2.rb', line 70</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_close'>close</span>
   <span class='ivar'>@my</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span> <span class='kw'>if</span> <span class='ivar'>@my</span> <span class='op'>!=</span> <span class='kw'>nil</span>
@@ -1559,8 +1875,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Set up the mySQL connection.</p>
+    <p>Set up the mySQL connection.</p>
 
 
   </div>
@@ -1579,8 +1894,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Configuration class, Hash, or any class with appropriate attr_readers.</p>
+        <div class='inline'><p>Configuration class, Hash, or any class with appropriate attr_readers.</p>
 </div>
       
     </li>
@@ -1600,8 +1914,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>if a block is given.</p>
+        <div class='inline'><p>if a block is given.</p>
 </div>
       
     </li>
@@ -1618,8 +1931,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>if block is given, and closes the mySQL connection.</p>
+        <div class='inline'><p>if block is given, and closes the mySQL connection.</p>
 </div>
       
     </li>
@@ -1632,8 +1944,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>if no block is given, and caller must call sql.close</p>
+        <div class='inline'><p>if no block is given, and caller must call sql.close</p>
 </div>
       
     </li>
@@ -1659,6 +1970,7 @@
       <pre class="lines">
 
 
+35
 36
 37
 38
@@ -1678,25 +1990,42 @@
 52
 53
 54
-55</pre>
+55
+56
+57
+58
+59
+60
+61
+62
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wikk_sql.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'lib/wikk_mysql2.rb', line 35</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_connect'>connect</span><span class='lparen'>(</span><span class='id identifier rubyid_db_config'>db_config</span><span class='rparen'>)</span>
-  <span class='kw'>if</span> <span class='id identifier rubyid_db_config'>db_config</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>Hash</span>
-    <span class='id identifier rubyid_sym'>sym</span> <span class='op'>=</span> <span class='id identifier rubyid_db_config'>db_config</span><span class='period'>.</span><span class='id identifier rubyid_each_with_object'>each_with_object</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span><span class='comma'>,</span><span class='id identifier rubyid_h'>h</span><span class='op'>|</span> <span class='id identifier rubyid_h'>h</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span> <span class='rbrace'>}</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_db_config'>db_config</span><span class='period'>.</span><span class='id identifier rubyid_instance_of?'>instance_of?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_sym'>sym</span> <span class='op'>=</span> <span class='id identifier rubyid_db_config'>db_config</span><span class='period'>.</span><span class='id identifier rubyid_transform_keys'>transform_keys</span><span class='lparen'>(</span><span class='op'>&amp;</span> <span class='symbol'>:to_sym</span> <span class='rparen'>)</span>
     <span class='id identifier rubyid_db_config'>db_config</span> <span class='op'>=</span> <span class='const'>Struct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='op'>*</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span> <span class='op'>=</span> <span class='id identifier rubyid_sym'>sym</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_sym'>sym</span><span class='period'>.</span><span class='id identifier rubyid_values_at'>values_at</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_k'>k</span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 
   <span class='kw'>begin</span>
-    <span class='ivar'>@my</span> <span class='op'>=</span> <span class='const'>Mysql</span><span class='op'>::</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_db_config'>db_config</span><span class='period'>.</span><span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='id identifier rubyid_db_config'>db_config</span><span class='period'>.</span><span class='id identifier rubyid_dbuser'>dbuser</span><span class='comma'>,</span> <span class='id identifier rubyid_db_config'>db_config</span><span class='period'>.</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_db_config'>db_config</span><span class='period'>.</span><span class='id identifier rubyid_db'>db</span> <span class='rparen'>)</span> 
-  <span class='kw'>rescue</span> <span class='const'>Exception</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+    <span class='ivar'>@my</span> <span class='op'>=</span> <span class='const'>Mysql2</span><span class='op'>::</span><span class='const'>Client</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span> <span class='label'>host:</span> <span class='id identifier rubyid_db_config'>db_config</span><span class='period'>.</span><span class='id identifier rubyid_host'>host</span><span class='comma'>,</span>
+                              <span class='label'>database:</span> <span class='id identifier rubyid_db_config'>db_config</span><span class='period'>.</span><span class='id identifier rubyid_db'>db</span><span class='comma'>,</span>
+                              <span class='label'>username:</span> <span class='id identifier rubyid_db_config'>db_config</span><span class='period'>.</span><span class='id identifier rubyid_dbuser'>dbuser</span><span class='comma'>,</span>
+                              <span class='label'>password:</span> <span class='id identifier rubyid_db_config'>db_config</span><span class='period'>.</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span>
+                              <span class='label'>socket:</span> <span class='id identifier rubyid_db_config'>db_config</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:socket</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_db_config'>db_config</span><span class='period'>.</span><span class='id identifier rubyid_socket'>socket</span> <span class='op'>:</span> <span class='kw'>nil</span><span class='comma'>,</span>
+                              <span class='label'>port:</span> <span class='id identifier rubyid_db_config'>db_config</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:port</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_db_config'>db_config</span><span class='period'>.</span><span class='id identifier rubyid_port'>port</span> <span class='op'>:</span> <span class='kw'>nil</span><span class='comma'>,</span>
+                              <span class='label'>flags:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>SESSION_TRACK</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+                              <span class='label'>init_command:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>SET @@SESSION.session_track_schema=ON</span><span class='tstring_end'>&#39;</span></span>
+                            <span class='rparen'>)</span>
+  <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
     <span class='ivar'>@my</span> <span class='op'>=</span> <span class='kw'>nil</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_e'>e</span>
   <span class='kw'>end</span>
-  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Mysql</span><span class='op'>::</span><span class='const'>Error</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Not Connected</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='ivar'>@my</span> <span class='op'>==</span> <span class='kw'>nil</span>
-  <span class='comment'>#@@my.reconnect = true
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Mysql2</span><span class='op'>::</span><span class='const'>Error</span><span class='comma'>,</span> <span class='int'>2002</span> <span class='kw'>if</span> <span class='ivar'>@my</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+
+  <span class='comment'># @@my.reconnect = true
 </span>  <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
     <span class='kw'>yield</span>
     <span class='kw'>return</span> <span class='id identifier rubyid_close'>close</span>
@@ -1711,7 +2040,7 @@
       <div class="method_details ">
   <h3 class="signature " id="each_hash-instance_method">
   
-    #<strong>each_hash</strong>(the_query, with_table_names = false) {|each| ... } &#x21d2; <tt>Object</tt> 
+    #<strong>each_hash</strong>(the_query, with_table_names = false) {|each| ... } &#x21d2; <tt>Array</tt> 
   
 
   
@@ -1722,11 +2051,9 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p>@result and @affected_rows are also set via call to query().</p>
+    <div class='inline'><p>@result and @affected_rows are also set via call to query().</p>
 </div>
   </div>
-
 
 <p>Yields query result row by row, as Hash, using String keys</p>
 
@@ -1747,8 +2074,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Sql query to send to DB server.</p>
+        <div class='inline'><p>Sql query to send to DB server.</p>
 </div>
       
     </li>
@@ -1765,8 +2091,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>if TrueClass, then table names are included in the hash keys.</p>
+        <div class='inline'><p>if TrueClass, then table names are included in the hash keys.</p>
 </div>
       
     </li>
@@ -1786,8 +2111,24 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>result row</p>
+        <div class='inline'><p>result row</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>all rows, if no block is given</p>
 </div>
       
     </li>
@@ -1804,8 +2145,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>passes on Mysql errors, freeing the result.</p>
+        <div class='inline'><p>passes on Mysql errors, freeing the result.</p>
 </div>
       
     </li>
@@ -1818,39 +2158,83 @@
       <pre class="lines">
 
 
-143
-144
-145
-146
-147
-148
-149
-150
-151
-152
-153
-154
-155
-156
-157
-158
-159
-160</pre>
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wikk_sql.rb', line 143</span>
+      <pre class="code"><span class="info file"># File 'lib/wikk_mysql2.rb', line 183</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_each_hash'>each_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='comma'>,</span> <span class='id identifier rubyid_with_table_names'>with_table_names</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_each_hash'>each_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='comma'>,</span> <span class='id identifier rubyid_with_table_names'>with_table_names</span> <span class='op'>=</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>begin</span>
-    <span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='rparen'>)</span>
-    <span class='kw'>if</span> <span class='ivar'>@result</span> <span class='op'>!=</span> <span class='kw'>nil</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
-      <span class='ivar'>@affected_rows</span> <span class='op'>=</span> <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_num_rows'>num_rows</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='comment'>#This is non-zero is we do a select, and get results.
-</span>      <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_each_hash'>each_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_with_table_names'>with_table_names</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_row'>row</span><span class='op'>|</span>
-        <span class='kw'>yield</span> <span class='id identifier rubyid_row'>row</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_with_table_names'>with_table_names</span>
+      <span class='comment'># We have to build the hash ourselves, if we want table names included
+</span>      <span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>as:</span> <span class='symbol'>:array</span><span class='comma'>,</span> <span class='label'>cache_rows:</span> <span class='kw'>false</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='ivar'>@result</span> <span class='op'>!=</span> <span class='kw'>nil</span>
+        <span class='id identifier rubyid_fields'>fields</span> <span class='op'>=</span> <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_fields'>fields</span>
+        <span class='id identifier rubyid_tables'>tables</span> <span class='op'>=</span> <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:tables</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_tables'>tables</span> <span class='op'>:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='comment'># My addition to mysql2 results.c
+</span>
+        <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+        <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_row'>row</span><span class='op'>|</span>
+          <span class='id identifier rubyid_hrow'>hrow</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+          <span class='lparen'>(</span><span class='int'>0</span><span class='op'>...</span><span class='id identifier rubyid_row'>row</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
+            <span class='id identifier rubyid_field_name'>field_name</span> <span class='op'>=</span> <span class='id identifier rubyid_tables'>tables</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='id identifier rubyid_fields'>fields</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tables'>tables</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_fields'>fields</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+            <span class='id identifier rubyid_hrow'>hrow</span><span class='lbracket'>[</span><span class='id identifier rubyid_field_name'>field_name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_row'>row</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span>
+          <span class='kw'>end</span>
+          <span class='kw'>yield</span> <span class='id identifier rubyid_hrow'>hrow</span>
+          <span class='id identifier rubyid_result'>result</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_hrow'>hrow</span>
+        <span class='kw'>end</span>
+        <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
+      <span class='kw'>end</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>as:</span> <span class='symbol'>:hash</span><span class='comma'>,</span> <span class='label'>cache_rows:</span> <span class='kw'>false</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='ivar'>@result</span> <span class='op'>!=</span> <span class='kw'>nil</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+          <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+        <span class='kw'>else</span>
+          <span class='kw'>return</span> <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span>
+        <span class='kw'>end</span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
-  <span class='kw'>rescue</span> <span class='const'>Mysql</span><span class='op'>::</span><span class='const'>Error</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
-    <span class='comment'>#puts &quot;#{e.errno}: #{e.error}&quot;
+  <span class='kw'>rescue</span> <span class='const'>Mysql2</span><span class='op'>::</span><span class='const'>Error</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+    <span class='comment'># puts &quot;#{e.errno}: #{e.error}&quot;
 </span>    <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_e'>e</span>
   <span class='kw'>ensure</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@result</span> <span class='op'>!=</span> <span class='kw'>nil</span>
@@ -1864,9 +2248,9 @@
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="each_row-instance_method">
+  <h3 class="signature " id="each_param-instance_method">
   
-    #<strong>each_row</strong>(the_query) {|each| ... } &#x21d2; <tt>Object</tt> 
+    #<strong>each_param</strong>(the_query) {|each| ... } &#x21d2; <tt>Array</tt> 
   
 
   
@@ -1877,11 +2261,143 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p>@result and @affected_rows are also set via call to query().</p>
+    <div class='inline'><p>@result and @affected_rows are also set via call to query().</p>
 </div>
   </div>
 
+<p>Yields query result row by row, as **Hash using Symbol keys, so can’t have table names included.
+This can be used with keyword arguments. eg. each_sym { |key1:, key2:, …, **rest_of_args| do something }</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>the_query</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Sql query to send to DB server.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Yield Parameters:</p>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>each</span>
+      
+      
+        <span class='type'>(<tt>**Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>result row</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>if no block is given, returns an Array of Hash’d rows, with symbol as the key</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Mysql</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>passes on Mysql errors, freeing the result.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/wikk_mysql2.rb', line 255</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_each_param'>each_param</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>symbolize_keys:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>as:</span> <span class='symbol'>:hash</span><span class='comma'>,</span> <span class='label'>cache_rows:</span> <span class='kw'>false</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='ivar'>@result</span> <span class='op'>!=</span> <span class='kw'>nil</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+      <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_row'>row</span><span class='op'>|</span> <span class='kw'>yield</span><span class='lparen'>(</span><span class='op'>**</span><span class='id identifier rubyid_row'>row</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+    <span class='kw'>else</span>
+      <span class='kw'>return</span> <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="each_row-instance_method">
+  
+    #<strong>each_row</strong>(the_query) {|each| ... } &#x21d2; <tt>Array</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>@result and @affected_rows are also set via call to query().</p>
+</div>
+  </div>
 
 <p>Yields query query results row by row, as Array</p>
 
@@ -1902,8 +2418,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Sql query to send to DB server.</p>
+        <div class='inline'><p>Sql query to send to DB server.</p>
 </div>
       
     </li>
@@ -1923,8 +2438,24 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>result row</p>
+        <div class='inline'><p>result row</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Array of rows</p>
 </div>
       
     </li>
@@ -1941,8 +2472,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>passes on Mysql errors, freeing the result.</p>
+        <div class='inline'><p>passes on Mysql errors, freeing the result.</p>
 </div>
       
     </li>
@@ -1955,39 +2485,47 @@
       <pre class="lines">
 
 
-118
-119
-120
-121
-122
-123
-124
-125
-126
-127
-128
-129
-130
-131
-132
-133
-134
-135</pre>
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wikk_sql.rb', line 118</span>
+      <pre class="code"><span class="info file"># File 'lib/wikk_mysql2.rb', line 150</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_each_row'>each_row</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_each_row'>each_row</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>begin</span>
-    <span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='rparen'>)</span>
-    <span class='kw'>if</span> <span class='ivar'>@result</span> <span class='op'>!=</span> <span class='kw'>nil</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
-      <span class='ivar'>@affected_rows</span> <span class='op'>=</span> <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_num_rows'>num_rows</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='comment'>#This is non-zero is we do a select, and get results.
-</span>      <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_row'>row</span><span class='op'>|</span>
-        <span class='kw'>yield</span> <span class='id identifier rubyid_row'>row</span> <span class='comment'>#return one row at a time to the block
-</span>      <span class='kw'>end</span>
+    <span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>as:</span> <span class='symbol'>:array</span><span class='comma'>,</span> <span class='label'>cache_rows:</span> <span class='kw'>false</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+    <span class='kw'>unless</span> <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+        <span class='ivar'>@affected_rows</span> <span class='op'>=</span> <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='comment'># This is non-zero is we do a select, and get results.
+</span>        <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+        <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_row'>row</span><span class='op'>|</span> <span class='id identifier rubyid_result'>result</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_row'>row</span> <span class='rbrace'>}</span>
+        <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
+      <span class='kw'>end</span>
     <span class='kw'>end</span>
-  <span class='kw'>rescue</span> <span class='const'>Mysql</span><span class='op'>::</span><span class='const'>Error</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
-    <span class='comment'>#puts &quot;#{e.errno}: #{e.error}&quot;
+  <span class='kw'>rescue</span> <span class='const'>Mysql2</span><span class='op'>::</span><span class='const'>Error</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+    <span class='comment'># puts &quot;#{e.errno}: #{e.error}&quot;
 </span>    <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_e'>e</span>
   <span class='kw'>ensure</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@result</span> <span class='op'>!=</span> <span class='kw'>nil</span>
@@ -2003,7 +2541,7 @@
       <div class="method_details ">
   <h3 class="signature " id="each_sym-instance_method">
   
-    #<strong>each_sym</strong>(the_query) {|each| ... } &#x21d2; <tt>Object</tt> 
+    #<strong>each_sym</strong>(the_query) {|each| ... } &#x21d2; <tt>Array</tt> 
   
 
   
@@ -2014,13 +2552,12 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p>@result and @affected_rows are also set via call to query().</p>
+    <div class='inline'><p>@result and @affected_rows are also set via call to query().</p>
 </div>
   </div>
 
-
-<p>Yields query result row by row, as Hash using Symbol keys, so can&#39;t have table names included. This can be used with keyword arguments. eg. each_sym { |key1:, key2:, …, **rest_of_args| do something }</p>
+<p>Yields query result row by row, as Hash using Symbol keys, so can’t have table names included.
+This can be used with keyword arguments. eg. each_sym { |key1:, key2:, …, **rest_of_args| do something }</p>
 
 
   </div>
@@ -2039,8 +2576,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Sql query to send to DB server.</p>
+        <div class='inline'><p>Sql query to send to DB server.</p>
 </div>
       
     </li>
@@ -2060,8 +2596,24 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>result row</p>
+        <div class='inline'><p>result row</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>if no block is given, returns an Array of Hash’d rows, with symbol as the key</p>
 </div>
       
     </li>
@@ -2078,8 +2630,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>passes on Mysql errors, freeing the result.</p>
+        <div class='inline'><p>passes on Mysql errors, freeing the result.</p>
 </div>
       
     </li>
@@ -2092,19 +2643,105 @@
       <pre class="lines">
 
 
-168
-169
-170
-171
-172</pre>
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wikk_sql.rb', line 168</span>
+      <pre class="code"><span class="info file"># File 'lib/wikk_mysql2.rb', line 234</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_each_sym'>each_sym</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_each_hash'>each_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_row_hash'>row_hash</span><span class='op'>|</span>
-    <span class='kw'>yield</span> <span class='id identifier rubyid_row_hash'>row_hash</span><span class='period'>.</span><span class='id identifier rubyid_each_with_object'>each_with_object</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span><span class='comma'>,</span><span class='id identifier rubyid_h'>h</span><span class='op'>|</span> <span class='id identifier rubyid_h'>h</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span> <span class='rbrace'>}</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_each_sym'>each_sym</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>symbolize_keys:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>as:</span> <span class='symbol'>:hash</span><span class='comma'>,</span> <span class='label'>cache_rows:</span> <span class='kw'>false</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='ivar'>@result</span> <span class='op'>!=</span> <span class='kw'>nil</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+      <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='kw'>return</span> <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span>
+    <span class='kw'>end</span>
   <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="escape-instance_method">
+  
+    #<strong>escape</strong>(query)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Call underlying connector’s escape of the query string</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>query</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The SQL query</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The SQL query, escaped to remove vulnerabilities</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+85
+86
+87</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/wikk_mysql2.rb', line 85</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_escape'>escape</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='rparen'>)</span>
+  <span class='ivar'>@my</span><span class='period'>.</span><span class='id identifier rubyid_escape'>escape</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2114,7 +2751,7 @@
       <div class="method_details ">
   <h3 class="signature " id="fetch_fields-instance_method">
   
-    #<strong>fetch_fields</strong> {|[Mysql::Field]| ... } &#x21d2; <tt>Object</tt> 
+    #<strong>fetch_fields</strong>  &#x21d2; <tt>Array</tt> 
   
 
   
@@ -2125,11 +2762,9 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p>fields are name (of field), table (name), def, type, length, max_length, flags,decimals</p>
+    <div class='inline'><p>fields are name (of field), table (name), def, type, length, max_length, flags,decimals</p>
 </div>
   </div>
-
 
 <p>Get the database field attributes from a query result.</p>
 
@@ -2138,12 +2773,10 @@
 </div>
 <div class="tags">
   
-<p class="tag_title">Yield Parameters:</p>
-<ul class="yieldparam">
+<p class="tag_title">Returns:</p>
+<ul class="return">
   
     <li>
-      
-        <span class='name'>[Mysql::Field]</span>
       
       
         <span class='type'>(<tt>Array</tt>)</span>
@@ -2151,8 +2784,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Array of field records</p>
+        <div class='inline'><p>[Mysql::Field] Array of field records</p>
 </div>
       
     </li>
@@ -2165,15 +2797,39 @@
       <pre class="lines">
 
 
-177
-178
-179</pre>
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wikk_sql.rb', line 177</span>
+      <pre class="code"><span class="info file"># File 'lib/wikk_mysql2.rb', line 270</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fetch_fields'>fetch_fields</span>
-  <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_fetch_fields'>fetch_fields</span>
+  <span class='id identifier rubyid_fields'>fields</span> <span class='op'>=</span> <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_fields'>fields</span>
+  <span class='id identifier rubyid_field_types'>field_types</span> <span class='op'>=</span> <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_field_types'>field_types</span>
+  <span class='id identifier rubyid_tables'>tables</span> <span class='op'>=</span> <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:tables</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_tables'>tables</span> <span class='op'>:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='comment'># My addition to mysql2 results.c
+</span>  <span class='id identifier rubyid_fields_arr'>fields_arr</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='lparen'>(</span><span class='int'>0</span><span class='op'>...</span><span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_fields'>fields</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
+    <span class='id identifier rubyid_fields_arr'>fields_arr</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="MySQL_FIELD.html" title="WIKK::MySQL_FIELD (class)">MySQL_FIELD</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+      <span class='label'>name:</span> <span class='id identifier rubyid_fields'>fields</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='label'>table:</span> <span class='id identifier rubyid_tables'>tables</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='label'>db:</span> <span class='id identifier rubyid_databases'>databases</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='label'>type:</span> <span class='id identifier rubyid_field_types'>field_types</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span>
+    <span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_fields_arr'>fields_arr</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2191,8 +2847,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Run a query on the DB server.</p>
+    <p>Run a query on the DB server.</p>
 
 
   </div>
@@ -2211,8 +2866,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Sql query to send to DB server.</p>
+        <div class='inline'><p>Sql query to send to DB server.</p>
 </div>
       
     </li>
@@ -2232,8 +2886,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>and @affected_rows are also set.</p>
+        <div class='inline'><p>and @affected_rows are also set.</p>
 </div>
       
     </li>
@@ -2250,8 +2903,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>@result and @affected_rows are also set.</p>
+        <div class='inline'><p>@result and @affected_rows are also set.</p>
 </div>
       
     </li>
@@ -2268,8 +2920,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>passes on Mysql errors, freeing the result.</p>
+        <div class='inline'><p>passes on Mysql errors, freeing the result.</p>
 </div>
       
     </li>
@@ -2282,54 +2933,561 @@
       <pre class="lines">
 
 
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93</pre>
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wikk_sql.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'lib/wikk_mysql2.rb', line 95</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Mysql</span><span class='op'>::</span><span class='const'>Error</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Not Connected</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='ivar'>@my</span> <span class='op'>==</span> <span class='kw'>nil</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='kw'>nil</span> <span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Mysql2</span><span class='op'>::</span><span class='const'>Error</span><span class='comma'>,</span> <span class='int'>2002</span> <span class='kw'>if</span> <span class='ivar'>@my</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+
+  <span class='comment'># Default to returning values as an array, with no caching of previous results
+</span>  <span class='comment'># This is consistent with ruby-mysql
+</span>  <span class='id identifier rubyid_options'>options</span> <span class='op'>||=</span> <span class='lbrace'>{</span> <span class='label'>as:</span> <span class='symbol'>:array</span><span class='comma'>,</span> <span class='label'>cache_rows:</span> <span class='kw'>false</span> <span class='rbrace'>}</span>
   <span class='kw'>begin</span>
-    <span class='kw'>if</span> <span class='ivar'>@result</span> <span class='op'>!=</span> <span class='kw'>nil</span> 
-      <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_free'>free</span> <span class='comment'>#Free any result we had left over from previous use.
+    <span class='kw'>if</span> <span class='ivar'>@result</span> <span class='op'>!=</span> <span class='kw'>nil</span>
+      <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_free'>free</span> <span class='comment'># Free any result we had left over from previous use.
 </span>      <span class='ivar'>@result</span> <span class='op'>=</span> <span class='kw'>nil</span>
     <span class='kw'>end</span>
-    <span class='ivar'>@affected_rows</span> <span class='op'>=</span> <span class='int'>0</span> <span class='comment'>#incase this query crashes and burns, this will have a value.
-</span>    <span class='ivar'>@result</span> <span class='op'>=</span> <span class='ivar'>@my</span><span class='period'>.</span><span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='rparen'>)</span>
-    <span class='ivar'>@affected_rows</span> <span class='op'>=</span> <span class='ivar'>@my</span><span class='period'>.</span><span class='id identifier rubyid_affected_rows'>affected_rows</span> <span class='comment'>#This is non-zero for insert/delete/update of rows
+    <span class='ivar'>@affected_rows</span> <span class='op'>=</span> <span class='int'>0</span> <span class='comment'># incase this query crashes and burns, this will have a value.
+</span>    <span class='ivar'>@result</span> <span class='op'>=</span> <span class='ivar'>@my</span><span class='period'>.</span><span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+    <span class='ivar'>@affected_rows</span> <span class='op'>=</span> <span class='ivar'>@my</span><span class='period'>.</span><span class='id identifier rubyid_affected_rows'>affected_rows</span> <span class='comment'># This is non-zero for select/insert/delete/update of rows
 </span>    <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
       <span class='kw'>yield</span> <span class='ivar'>@result</span>
     <span class='kw'>else</span>
       <span class='kw'>return</span> <span class='ivar'>@result</span>
     <span class='kw'>end</span>
-  <span class='kw'>rescue</span> <span class='const'>Mysql</span><span class='op'>::</span><span class='const'>Error</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
-    <span class='kw'>if</span> <span class='ivar'>@result</span> <span class='op'>!=</span> <span class='kw'>nil</span> 
-      <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_free'>free</span> <span class='comment'>#Free any result we had left over from previous use.
+  <span class='kw'>rescue</span> <span class='const'>Mysql2</span><span class='op'>::</span><span class='const'>Error</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+    <span class='kw'>if</span> <span class='ivar'>@result</span> <span class='op'>!=</span> <span class='kw'>nil</span>
+      <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_free'>free</span> <span class='comment'># Free any result we had left over from previous use.
 </span>      <span class='ivar'>@result</span> <span class='op'>=</span> <span class='kw'>nil</span>
     <span class='kw'>end</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_e'>e</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="query_array-instance_method">
+  
+    #<strong>query_array</strong> {|each| ... } &#x21d2; <tt>Array</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>@result and @affected_rows are also set via call to query().</p>
+</div>
+  </div>
+
+<p>Yields query query results row by row, as Array</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>the_query</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Sql query to send to DB server.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Yield Parameters:</p>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>each</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>result row</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Array of rows</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Mysql</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>passes on Mysql errors, freeing the result.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/wikk_mysql2.rb', line 173</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_each_row'>each_row</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>as:</span> <span class='symbol'>:array</span><span class='comma'>,</span> <span class='label'>cache_rows:</span> <span class='kw'>false</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+    <span class='kw'>unless</span> <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+        <span class='ivar'>@affected_rows</span> <span class='op'>=</span> <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='comment'># This is non-zero is we do a select, and get results.
+</span>        <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+        <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_row'>row</span><span class='op'>|</span> <span class='id identifier rubyid_result'>result</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_row'>row</span> <span class='rbrace'>}</span>
+        <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>rescue</span> <span class='const'>Mysql2</span><span class='op'>::</span><span class='const'>Error</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+    <span class='comment'># puts &quot;#{e.errno}: #{e.error}&quot;
+</span>    <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_e'>e</span>
+  <span class='kw'>ensure</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@result</span> <span class='op'>!=</span> <span class='kw'>nil</span>
+      <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_free'>free</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="query_hash-instance_method">
+  
+    #<strong>query_hash</strong> {|each| ... } &#x21d2; <tt>Array</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>@result and @affected_rows are also set via call to query().</p>
+</div>
+  </div>
+
+<p>Yields query result row by row, as Hash, using String keys</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>the_query</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Sql query to send to DB server.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>with_table_names</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>if TrueClass, then table names are included in the hash keys.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Yield Parameters:</p>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>each</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>result row</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>all rows, if no block is given</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Mysql</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>passes on Mysql errors, freeing the result.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/wikk_mysql2.rb', line 224</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_each_hash'>each_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='comma'>,</span> <span class='id identifier rubyid_with_table_names'>with_table_names</span> <span class='op'>=</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='kw'>begin</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_with_table_names'>with_table_names</span>
+      <span class='comment'># We have to build the hash ourselves, if we want table names included
+</span>      <span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>as:</span> <span class='symbol'>:array</span><span class='comma'>,</span> <span class='label'>cache_rows:</span> <span class='kw'>false</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='ivar'>@result</span> <span class='op'>!=</span> <span class='kw'>nil</span>
+        <span class='id identifier rubyid_fields'>fields</span> <span class='op'>=</span> <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_fields'>fields</span>
+        <span class='id identifier rubyid_tables'>tables</span> <span class='op'>=</span> <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:tables</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_tables'>tables</span> <span class='op'>:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='comment'># My addition to mysql2 results.c
+</span>
+        <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+        <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_row'>row</span><span class='op'>|</span>
+          <span class='id identifier rubyid_hrow'>hrow</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+          <span class='lparen'>(</span><span class='int'>0</span><span class='op'>...</span><span class='id identifier rubyid_row'>row</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
+            <span class='id identifier rubyid_field_name'>field_name</span> <span class='op'>=</span> <span class='id identifier rubyid_tables'>tables</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='id identifier rubyid_fields'>fields</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tables'>tables</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_fields'>fields</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+            <span class='id identifier rubyid_hrow'>hrow</span><span class='lbracket'>[</span><span class='id identifier rubyid_field_name'>field_name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_row'>row</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span>
+          <span class='kw'>end</span>
+          <span class='kw'>yield</span> <span class='id identifier rubyid_hrow'>hrow</span>
+          <span class='id identifier rubyid_result'>result</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_hrow'>hrow</span>
+        <span class='kw'>end</span>
+        <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
+      <span class='kw'>end</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>as:</span> <span class='symbol'>:hash</span><span class='comma'>,</span> <span class='label'>cache_rows:</span> <span class='kw'>false</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='ivar'>@result</span> <span class='op'>!=</span> <span class='kw'>nil</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+          <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+        <span class='kw'>else</span>
+          <span class='kw'>return</span> <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>rescue</span> <span class='const'>Mysql2</span><span class='op'>::</span><span class='const'>Error</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+    <span class='comment'># puts &quot;#{e.errno}: #{e.error}&quot;
+</span>    <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_e'>e</span>
+  <span class='kw'>ensure</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@result</span> <span class='op'>!=</span> <span class='kw'>nil</span>
+      <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_free'>free</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="query_sym-instance_method">
+  
+    #<strong>query_sym</strong> {|each| ... } &#x21d2; <tt>Array</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>@result and @affected_rows are also set via call to query().</p>
+</div>
+  </div>
+
+<p>Yields query result row by row, as Hash using Symbol keys, so can’t have table names included.
+This can be used with keyword arguments. eg. each_sym { |key1:, key2:, …, **rest_of_args| do something }</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>the_query</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Sql query to send to DB server.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Yield Parameters:</p>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>each</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>result row</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>if no block is given, returns an Array of Hash’d rows, with symbol as the key</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Mysql</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>passes on Mysql errors, freeing the result.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/wikk_mysql2.rb', line 245</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_each_sym'>each_sym</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_the_query'>the_query</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>symbolize_keys:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>as:</span> <span class='symbol'>:hash</span><span class='comma'>,</span> <span class='label'>cache_rows:</span> <span class='kw'>false</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='ivar'>@result</span> <span class='op'>!=</span> <span class='kw'>nil</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+      <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='kw'>return</span> <span class='ivar'>@result</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span>
+    <span class='kw'>end</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -2348,8 +3506,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Perform a transaction in the passed block. RollBACK on error, otherwise COMMIT</p>
+    <p>Perform a transaction in the passed block.
+RollBACK on error, otherwise COMMIT</p>
 
 
   </div>
@@ -2369,8 +3527,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>yields to block, where the queries are performed.</p>
+        <div class='inline'><p>yields to block, where the queries are performed.</p>
 </div>
       
     </li>
@@ -2387,8 +3544,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>passes on Mysql errors, freeing the result.</p>
+        <div class='inline'><p>passes on Mysql errors, freeing the result.</p>
 </div>
       
     </li>
@@ -2401,32 +3557,34 @@
       <pre class="lines">
 
 
-99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111</pre>
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wikk_sql.rb', line 99</span>
+      <pre class="code"><span class="info file"># File 'lib/wikk_mysql2.rb', line 128</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_transaction'>transaction</span>
-  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Mysql</span><span class='op'>::</span><span class='const'>Error</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Not Connected</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='ivar'>@my</span> <span class='op'>==</span> <span class='kw'>nil</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Mysql2</span><span class='op'>::</span><span class='const'>Error</span><span class='comma'>,</span> <span class='int'>2002</span> <span class='kw'>if</span> <span class='ivar'>@my</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+
   <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
     <span class='kw'>begin</span>
-      <span class='ivar'>@my</span><span class='period'>.</span><span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>START TRANSACTION WITH CONSISTENT SNAPSHOT</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-      <span class='kw'>yield</span> <span class='comment'>#Start executing the query black.
-</span>      <span class='ivar'>@my</span><span class='period'>.</span><span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>COMMIT</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-    <span class='kw'>rescue</span> <span class='const'>Mysql</span><span class='op'>::</span><span class='const'>Error</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
-      <span class='ivar'>@my</span><span class='period'>.</span><span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ROLLBACK</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='ivar'>@my</span><span class='period'>.</span><span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>START TRANSACTION WITH CONSISTENT SNAPSHOT</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+      <span class='kw'>yield</span> <span class='comment'># Start executing the query black.
+</span>      <span class='ivar'>@my</span><span class='period'>.</span><span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>COMMIT</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='kw'>rescue</span> <span class='const'>Mysql2</span><span class='op'>::</span><span class='const'>Error</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+      <span class='ivar'>@my</span><span class='period'>.</span><span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ROLLBACK</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
       <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_e'>e</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -2441,9 +3599,9 @@
 </div>
 
       <div id="footer">
-  Generated on Sun Oct 25 21:12:30 2020 by
+  Generated on Tue Jun 21 09:27:19 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.25 (ruby-2.7.1).
+  0.9.27 (ruby-3.0.2).
 </div>
 
     </div>

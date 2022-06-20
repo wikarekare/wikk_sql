@@ -57,24 +57,23 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'>
-<h1 id="label-wikk_sql">wikk_sql</h1>
-<ul><li>
-<p>Docs :: <a href="https://wikarekare.github.com/wikk_sql">wikarekare.github.com/wikk_sql</a>/</p>
-</li><li>
-<p>Source :: <a href="https://github.com/wikarekare/wikk_sql">github.com/wikarekare/wikk_sql</a></p>
-</li><li>
-<p>Gem :: <a href="https://rubygems.org/gems/wikk_sql">rubygems.org/gems/wikk_sql</a></p>
-</li></ul>
+      <div id="content"><div id='filecontents'><h1 id="wikksql">wikk_sql</h1>
 
-<h2 id="label-DESCRIPTION-3A">DESCRIPTION:</h2>
+<ul>
+  <li>Docs :: https://wikarekare.github.io/wikk_sql/</li>
+  <li>Source :: https://github.com/wikarekare/wikk_sql</li>
+  <li>Gem :: https://rubygems.org/gems/wikk_sql</li>
+</ul>
 
-<p>Wrappers around mysql gem. Consolidation of bits of code from many of my projects, going back 10+ years, into a gem.</p>
+<h2 id="description">DESCRIPTION:</h2>
 
-<h3 id="label-Instance+level">Instance level</h3>
+<p>Wrappers around mysql gem.
+Consolidation of bits of code from many of my projects, going back 10+ years, into a gem.</p>
 
-<pre class="code ruby"><code class="ruby">connect(config)  { |sql| rest of block } #Aliased to open
-  close #Call if connect didn&#39;t get passed a block
+<h3 id="instance-level">Instance level</h3>
+<p><code>
+  connect(config)  { |sql| rest of block } #Aliased to open
+  close #Call if connect didn't get passed a block
   query(the_query)
   each_row(the_query) { |row| rest of block }  
   each_hash(the_query, with_table_names) { |hash| rest of block }  
@@ -82,81 +81,96 @@
   transaction { calls to query, each_row, each_hash or each_sym }
   fetch_fields #Returns table field info
   affected_rows #Returns the number of rows changed, inserted or deleted.
-</code></pre>
+</code></p>
 
-<h3 id="label-Class+level+calls+mirror+the+instance+level+calls+taking+blocks">Class level calls mirror the instance level calls taking blocks</h3>
-
-<pre class="code ruby"><code class="ruby">WIKK::SQL::connect(config) { |sql| rest of block }  
+<h3 id="class-level-calls-mirror-the-instance-level-calls-taking-blocks">Class level calls mirror the instance level calls taking blocks</h3>
+<p><code>
+   WIKK::SQL::connect(config) { |sql| rest of block }  
    WIKK::SQL::each_row(config,the_query) { |row| rest of block }  
    WIKK::SQL::each_hash(config,the_query, with_table_names=false) { |hash| rest of block }  
    WIKK::SQL::each_sym(config,the_query) { |sym:, sym:, ..., **hash| rest of block }
-</code></pre>
+</code></p>
 
-<h3 id="label-Config">Config</h3>
-
-<pre class="code ruby"><code class="ruby">Any class, such as the WIKK::Configuration class, with attr_readers
+<h3 id="config">Config</h3>
+<p><code>
+Any class, such as the WIKK::Configuration class, with attr_readers
     host    #String hostname or IP Address
     db      #String database name
     dbuser  #String user to connect to DB as.
-    key     #&quot;password&quot; for db user account.
+    key     #"password" for db user account.
 Or Hash
-    {&quot;host&quot; =&gt; &quot;hostname&quot;, &quot;db&quot; =&gt; &quot;database&quot;, &quot;dbuser&quot; =&gt; &quot;username&quot;, &quot;key&quot; =&gt; &quot;password&quot;}
-</code></pre>
+    {"host" =&gt; "hostname", "db" =&gt; "database", "dbuser" =&gt; "username", "key" =&gt; "password"}
+</code></p>
 
-<h2 id="label-FEATURES-2FPROBLEMS-3A">FEATURES/PROBLEMS:</h2>
+<h2 id="featuresproblems">FEATURES/PROBLEMS:</h2>
 
-<h2 id="label-SYNOPSIS-3A">SYNOPSIS:</h2>
+<h2 id="synopsis">SYNOPSIS:</h2>
 
-<h3 id="label-Instance+example">Instance example</h3>
+<h3 id="instance-example">Instance example</h3>
+<p><code>
+  WIKK::SQL::connect(@config) do |sql|
+    sql.each_hash("select * from customer limit 2", with_table_names = true) do |row|
+      row.each do |k,v|
+        printf "  %s =&gt; %s\n", k, v
+      end
+    end
+    puts "Number of rows returned: #{sql.affected_rows}"
+  end
+</code></p>
 
-<pre class="code ruby"><code class="ruby"><span class='const'><span class='object_link'><a href="WIKK.html" title="WIKK (module)">WIKK</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="WIKK/SQL.html" title="WIKK::SQL (class)">SQL</a></span></span><span class='op'>::</span><span class='id identifier rubyid_connect'><span class='object_link'><a href="WIKK/SQL.html#connect-class_method" title="WIKK::SQL.connect (method)">connect</a></span></span><span class='lparen'>(</span><span class='ivar'>@config</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_sql'>sql</span><span class='op'>|</span>
-    <span class='id identifier rubyid_sql'>sql</span><span class='period'>.</span><span class='id identifier rubyid_each_hash'>each_hash</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>select * from customer limit 2</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_with_table_names'>with_table_names</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_row'>row</span><span class='op'>|</span>
-      <span class='id identifier rubyid_row'>row</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
-        <span class='id identifier rubyid_printf'>printf</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  %s =&gt; %s\n</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span>
-      <span class='kw'>end</span>
-    <span class='kw'>end</span>
-    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Number of rows returned: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sql'>sql</span><span class='period'>.</span><span class='id identifier rubyid_affected_rows'>affected_rows</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-  <span class='kw'>end</span>
-</code></pre>
+<h3 id="class-level-example">Class level example</h3>
+<p><code>
+  WIKK::SQL::each_sym(@config, "select * from customer limit 2") do |customer_id:, name:, site_name:, **row|
+    printf "customer_id %s  site_name %s name %s\n", customer_id, site_name, name
+  end
+</code></p>
 
-<h3 id="label-Class+level+example">Class level example</h3>
+<h2 id="requirements">REQUIREMENTS:</h2>
 
-<pre class="code ruby"><code class="ruby"><span class='const'><span class='object_link'><a href="WIKK.html" title="WIKK (module)">WIKK</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="WIKK/SQL.html" title="WIKK::SQL (class)">SQL</a></span></span><span class='op'>::</span><span class='id identifier rubyid_each_sym'><span class='object_link'><a href="WIKK/SQL.html#each_sym-class_method" title="WIKK::SQL.each_sym (method)">each_sym</a></span></span><span class='lparen'>(</span><span class='ivar'>@config</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>select * from customer limit 2</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='label'>customer_id:</span><span class='comma'>,</span> <span class='label'>name:</span><span class='comma'>,</span> <span class='label'>site_name:</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_row'>row</span><span class='op'>|</span>
-    <span class='id identifier rubyid_printf'>printf</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>customer_id %s  site_name %s name %s\n</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_customer_id'>customer_id</span><span class='comma'>,</span> <span class='id identifier rubyid_site_name'>site_name</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span>
-  <span class='kw'>end</span>
-</code></pre>
-
-<h2 id="label-REQUIREMENTS-3A">REQUIREMENTS:</h2>
-<ul><li>
-<p>require &#39;wikk_sql&#39;</p>
-</li></ul>
+<ul>
+  <li>require ‘wikk_sql’</li>
+</ul>
 
 <p>Can use wikk_configuration gem to load config from a json file.</p>
 
-<h2 id="label-INSTALL-3A">INSTALL:</h2>
-<ul><li>
-<p>sudo gem install wikk_sql</p>
-</li></ul>
+<h2 id="install">INSTALL:</h2>
 
-<h2 id="label-LICENSE-3A">LICENSE:</h2>
+<ul>
+  <li>sudo gem install wikk_sql</li>
+</ul>
+
+<h2 id="license">LICENSE:</h2>
 
 <p>(The MIT License)</p>
 
 <p>Encapsulates Wikarekare code used in library form, from 2004 to present day, as a gem.</p>
 
-<p>Copyright © 2004-2016</p>
+<p>Copyright (c) 2004-2016</p>
 
-<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &#39;Software&#39;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+‘Software’), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
 
-<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
 
-<p>THE SOFTWARE IS PROVIDED &#39;AS IS&#39;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+<p>THE SOFTWARE IS PROVIDED ‘AS IS’, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Sun Oct 25 21:12:29 2020 by
+  Generated on Tue Jun 21 09:27:19 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.25 (ruby-2.7.1).
+  0.9.27 (ruby-3.0.2).
 </div>
 
     </div>
