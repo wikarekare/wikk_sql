@@ -170,6 +170,8 @@ module WIKK
       end
     end
 
+    alias query_array each_row
+
     # Yields query result row by row, as Hash, using String keys
     #
     # @param the_query [String]  Sql query to send to DB server.
@@ -205,9 +207,7 @@ module WIKK
             if block_given?
               @result.each(&block)
             else
-              result = []
-              @result.each { |row| result << row }
-              return result
+              return @result.to_a
             end
           end
         end
@@ -220,6 +220,8 @@ module WIKK
         end
       end
     end
+
+    alias query_hash each_hash
 
     # Yields query result row by row, as Hash using Symbol keys, so can't have table names included.
     # This can be used with keyword arguments. eg. each_sym { |key1:, key2:, ..., **rest_of_args| do something }
@@ -235,14 +237,14 @@ module WIKK
         if block_given?
           @result.each(&block)
         else
-          result = []
-          @result.each { |row| result << row }
-          return result
+          return @result.to_a
         end
       end
     end
 
-    # Yields query result row by row, as Hash using Symbol keys, so can't have table names included.
+    alias query_sym each_sym
+
+    # Yields query result row by row, as **Hash using Symbol keys, so can't have table names included.
     # This can be used with keyword arguments. eg. each_sym { |key1:, key2:, ..., **rest_of_args| do something }
     #
     # @param the_query [String]  Sql query to send to DB server.
@@ -256,9 +258,7 @@ module WIKK
         if block_given?
           @result.each { |row| yield(**row) }
         else
-          result = []
-          @result.each { |row| result << row }
-          return result
+          return @result.to_a
         end
       end
     end
